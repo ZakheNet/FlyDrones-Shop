@@ -1,0 +1,52 @@
+.droneHovering {
+  animation: droneHovering 10s linear infinite;
+}
+
+@keyframes droneHovering {
+  0% {
+  }
+  25% {
+    transform: scale(1.02) translateY(1rem) rotateZ(-2deg);
+  }
+  50% {
+  }
+  75% {
+    transform: scale(0.98) translateY(-1rem) rotateZ(2deg);
+  }
+  100% {
+  }
+}
+
+.SearchSystem {
+  animation: SearchSystem;
+  animation-timeline: view();
+  animation-range: entry 50% cover 40%;
+  @media (max-width: 1400px) {
+    animation-range: entry 50% cover 10%;
+  }
+}
+
+@keyframes SearchSystem {
+  from {
+    transform: scale(0.5) translateY(-10rem);
+    opacity: 50%;
+    z-index: -1;
+    box-shadow: none;
+  }
+  90% {
+    z-index: -1;
+    box-shadow: none;
+  }
+}
+
+.loading{
+  animation: loading 3s linear infinite;
+}
+@keyframes loading {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

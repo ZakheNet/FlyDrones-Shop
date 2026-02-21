@@ -1,0 +1,65 @@
+.centerSpace {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.2rem 1rem;
+}
+
+.ItemPreview {
+  width: 25rem;
+  max-width: 40vw;
+  display: flex;
+  background-position: center;
+  background-size: cover;
+  border-radius: 0.5rem;
+  flex-direction: column;
+  flex: 1;
+}
+.ItemPreview:hover,
+.viewAll:hover {
+  cursor: pointer;
+}
+.ItemPreview:active,
+.viewAll:active {
+  transform: scale(0.97);
+  transition: all 0.15s;
+  z-index: -1;
+  filter: brightness(90%);
+}
+.ItemPrevBody {
+  padding: 1rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.previewImage {
+  height: 100%;
+  width: 100%;
+  background: white;
+  object-fit: contain;
+  border-radius: 0.3rem;
+}
+.detailBox {
+  display: flex;
+  padding: 0.3rem;
+}
+.itemPrice {
+  font-weight: 600;
+  font-size: 1.6rem;
+  padding: 0.1rem 1rem;
+  border-radius: 0.2rem;
+  color: rgb(255, 255, 255);
+  background: green;
+}
+
+.viewAll {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  img {
+    height: 1.5rem;
+  }
+}

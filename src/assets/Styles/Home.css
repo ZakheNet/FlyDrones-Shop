@@ -1,0 +1,103 @@
+.HomePage{
+  width: 100%;
+}
+.Showcase {
+  background-attachment: fixed;
+  align-self: center;
+  min-height: calc(100vh - 3.6rem);
+  background-position: center;
+  background-size: cover;
+  background-image: url("../Backgrounds/BG3.webp");
+  background-repeat: repeat-y;
+  z-index: 5;
+  margin: 1rem;
+  border-radius: 2rem;
+  box-shadow: black 0.2rem 0.2rem 0.3rem;
+}
+.droneFloating {
+  background-image: url("../Models/DroneModel2.png");
+  height: 40rem;
+  width: 40rem;
+}
+.droneModel {
+  filter: drop-shadow(rgba(0, 0, 0, 0.7) 0.4rem 0.7rem 0.2rem);
+  max-width: 45vw;
+}
+.MainContent{
+  z-index: -1;
+}
+.SearchSystem {
+  background: white;
+  top: 2.6rem;
+  box-shadow: rgba(0, 0, 0, 0.3) 0rem 0.1rem 0.2rem;
+  position: sticky;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.3rem 1rem;
+  z-index: 0;
+  gap: 2vw;
+  width: 100%;
+  .FilterBar {
+    padding: 0.1rem;
+    width: 15rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    border: none;
+    border-radius: 3rem;
+    background: rgba(120, 20, 20, 1);
+    color: white;
+    gap: 0.4rem;
+    align-items: center;
+    height: 2.2rem;
+    img {
+      filter: invert();
+      height: 100%;
+      aspect-ratio: 1/1;
+    }
+  }
+  .SearchBar {
+    background: rgba(120, 20, 20, 1);
+    flex: 0.9;
+    display: flex;
+    height: 2.2rem;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.15rem 2rem;
+    border-radius: 3rem;
+    max-width: min(60vw,45rem);
+    input {
+      height: 100%;
+      font-size: 1.5rem;
+      padding: 0 1rem;
+      border: none;
+      flex: 0.99;
+      max-width: 40VW;
+    }
+    .searchBtn {
+      height: 100%;
+      background: rgb(255, 255, 255);
+      font-weight: bold;
+      font-size: 1.2rem;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.2rem;
+      img {
+        height: 130%;
+      }
+      @media (max-width:780px) {
+        .searchTittle{display: none;}
+      }
+    }
+  }
+}
+
+.ItemListContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem 2rem;
+}

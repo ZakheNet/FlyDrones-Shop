@@ -1,0 +1,1086 @@
+/* const prev = require("../assets/Catalogue/Drones/1/1.webp");
+
+const DATA = {
+  drones: [
+    {
+      name: "Dragon Fly",
+      model: "M27i",
+      size: "",
+      id: "7",
+      price: 25,
+      images: ["/src/assets/Drones/7/1.webp","/src/assets/Drones/7/2.webp","/src/assets/Drones/7/3.webp"],
+      colors: ["white", "gray", "blue"],
+      description: "",
+      features: ["50m remote range", "Dust proof"],
+      reviews: [{ by: "Gwen Santa",email:"gwensanta02@gmail.com", starts: 3, comment: "This is a good products, the handling is amazing" }],
+    },
+  ],
+  accessories: [{
+      name: "4000MAh Powerbank",
+      model: "4rt",
+      size: "4000 MAh",
+      id: "3",
+      price: 25,
+      images: ["../assets/Accessories/Acce3/1.webp","../assets/Accessories/Acce3/2.webp","../assets/Accessories/Acce3/3.webp"],
+      colors: ["white"],
+      description: "",
+      features: ["Dual Charge","Upto 10 000 recharges", "drop durable"],
+      reviews: [{ by: "Hero Hunter",email:"heroguy27@gmail.com", starts: 4, comment: "Lastes the entire day, it was a life saver" }],
+    },],
+};
+ 
+
+const DATA = {
+  drones: [
+    {
+      name: "Sky Phantom",
+      model: "X1-Pro",
+      size: "Small",
+      id: "1",
+      price: 149,
+      images: [
+        "/src/assets/Drones/1/1.webp",
+        "/src/assets/Drones/1/2.webp",
+        "/src/assets/Drones/1/3.webp",
+      ],
+      colors: ["black", "red"],
+      description: "Compact beginner friendly drone.",
+      features: ["120m range", "720p HD camera", "Auto hover"],
+      reviews: [
+        {
+          by: "Liam Torres",
+          email: "liamtorres1@gmail.com",
+          starts: 4,
+          comment: "Perfect starter drone, very stable in air.",
+        },
+      ],
+    },
+    {
+      name: "Aero Hawk",
+      model: "Z5",
+      size: "Medium",
+      id: "2",
+      price: 299,
+      images: [
+        "/src/assets/Drones/2/1.webp",
+        "/src/assets/Drones/2/2.webp",
+        "/src/assets/Drones/2/3.webp",
+      ],
+      colors: ["white", "gray"],
+      description: "Smooth aerial photography drone.",
+      features: ["4K Camera", "GPS tracking", "Return home", "200m range"],
+      reviews: [],
+    },
+    {
+      name: "Storm Rider",
+      model: "V9X",
+      size: "Large",
+      id: "3",
+      price: 499,
+      images: [
+        "/src/assets/Drones/3/1.webp",
+        "/src/assets/Drones/3/2.webp",
+        "/src/assets/Drones/3/3.webp",
+      ],
+      colors: ["black"],
+      description: "High performance long flight drone.",
+      features: [
+        "Brushless motors",
+        "30min flight",
+        "Wind resistant",
+        "Obstacle avoidance",
+        "LED night lights",
+      ],
+      reviews: [
+        {
+          by: "Sandra Cole",
+          email: "sandra.cole@mail.com",
+          starts: 5,
+          comment: "Super powerful and steady even in wind.",
+        },
+        {
+          by: "Mark Wayne",
+          email: "markwayne88@mail.com",
+          starts: 4,
+          comment: "Battery life is impressive.",
+        },
+      ],
+    },
+
+    {
+      name: "Falcon Eye",
+      model: "F200",
+      size: "Medium",
+      id: "4",
+      price: 359,
+      images: [
+        "/src/assets/Drones/4/1.webp",
+        "/src/assets/Drones/4/2.webp",
+        "/src/assets/Drones/4/3.webp",
+      ],
+      colors: ["blue", "white"],
+      description: "Photography focused quadcopter.",
+      features: ["2-axis gimbal", "1080p video", "150m range"],
+      reviews: [
+        {
+          by: "Rachel Kim",
+          email: "rkim22@gmail.com",
+          starts: 5,
+          comment: "Crystal clear footage quality!",
+        },
+      ],
+    },
+
+    {
+      name: "Night Ranger",
+      model: "NR-77",
+      size: "Medium",
+      id: "5",
+      price: 420,
+      images: [
+        "/src/assets/Drones/5/1.webp",
+        "/src/assets/Drones/5/2.webp",
+        "/src/assets/Drones/5/3.webp",
+      ],
+      colors: ["black", "orange"],
+      description: "Built for night flying missions.",
+      features: [
+        "Infrared camera",
+        "Night LEDs",
+        "GPS auto return",
+        "25min flight",
+      ],
+      reviews: [],
+    },
+
+    {
+      name: "Sky Bolt",
+      model: "SB-12",
+      size: "Small",
+      id: "6",
+      price: 189,
+      images: [
+        "/src/assets/Drones/6/1.webp",
+        "/src/assets/Drones/6/2.webp",
+        "/src/assets/Drones/6/3.webp",
+      ],
+      colors: ["yellow"],
+      description: "Lightweight racing drone.",
+      features: ["High speed mode"],
+      reviews: [
+        {
+          by: "Jason Lee",
+          email: "jasonlee@gmail.com",
+          starts: 3,
+          comment: "Fun but battery drains fast.",
+        },
+      ],
+    },
+
+    {
+      name: "Cloud Surfer",
+      model: "CS-90",
+      size: "Large",
+      id: "7",
+      price: 550,
+      images: [
+        "/src/assets/Drones/7/1.webp",
+        "/src/assets/Drones/7/2.webp",
+        "/src/assets/Drones/7/3.webp",
+      ],
+      colors: ["white"],
+      description: "Premium cinematic drone.",
+      features: [
+        "4K HDR",
+        "3-axis gimbal",
+        "Follow me mode",
+        "40min flight",
+        "300m range",
+      ],
+      reviews: [
+        {
+          by: "Nina Patel",
+          email: "npatel@gmail.com",
+          starts: 5,
+          comment: "Feels like a professional drone!",
+        },
+      ],
+    },
+
+    {
+      name: "Wind Cutter",
+      model: "WC-3",
+      size: "Medium",
+      id: "8",
+      price: 310,
+      images: [
+        "/src/assets/Drones/8/1.webp",
+        "/src/assets/Drones/8/2.webp",
+        "/src/assets/Drones/8/3.webp",
+      ],
+      colors: ["gray"],
+      description: "Stable flight drone.",
+      features: ["Wind resistant", "Return home"],
+      reviews: [],
+    },
+
+    {
+      name: "Air Scout",
+      model: "AS-14",
+      size: "Small",
+      id: "9",
+      price: 210,
+      images: [
+        "/src/assets/Drones/9/1.webp",
+        "/src/assets/Drones/9/2.webp",
+        "/src/assets/Drones/9/3.webp",
+      ],
+      colors: ["red", "black"],
+      description: "Portable foldable drone.",
+      features: ["Foldable arms", "1080p camera", "Gesture control"],
+      reviews: [
+        {
+          by: "Omar Reed",
+          email: "omarreed@gmail.com",
+          starts: 4,
+          comment: "Very portable and easy to carry.",
+        },
+      ],
+    },
+
+    {
+      name: "Eagle Pro",
+      model: "EP-500",
+      size: "Large",
+      id: "10",
+      price: 699,
+      images: [
+        "/src/assets/Drones/0/1.webp",
+        "/src/assets/Drones/0/2.webp",
+        "/src/assets/Drones/0/3.webp",
+      ],
+      colors: ["black", "silver"],
+      description: "Professional filmmaking drone.",
+      features: [
+        "6K Camera",
+        "Obstacle sensors",
+        "50min flight",
+        "Smart tracking",
+        "Live streaming",
+      ],
+      reviews: [
+        {
+          by: "Kevin Hart",
+          email: "kevinhart@gmail.com",
+          starts: 5,
+          comment: "Outstanding professional quality!",
+        },
+      ],
+    },
+
+    // Drones 11–20 (shortened descriptions but fully structured)
+
+    ...Array.from({ length: 10 }, (_, i) => {
+      const id = (i + 11).toString();
+      return {
+        name: `Drone Master ${id}`,
+        model: `DM-${id}`,
+        size: i % 2 === 0 ? "Medium" : "Small",
+        id,
+        price: 150 + i * 35,
+        images: [
+          `/src/assets/Drones/ron}/1.webp`,
+          `/src/assets/Drones/ron}/2.webp`,
+          `/src/assets/Drones/ron}/3.webp`,
+        ],
+        colors: ["black", "white"],
+        description: "Advanced consumer drone.",
+        features: ["HD camera", "Auto return", "Stabilization system"],
+        reviews:
+          i % 3 === 0
+            ? []
+            : [
+                {
+                  by: `User ${id}`,
+                  email: `user${id}@mail.com`,
+                  starts: 4,
+                  comment: "Very smooth controls and stable flight.",
+                },
+              ],
+      };
+    }),
+  ],
+
+  accessories: [
+    {
+      name: "Type-C Fast Charger",
+      model: "TC-20W",
+      size: "20W",
+      id: "1",
+      price: 19,
+      images: [
+        "../assets/Accessories/Acce1/1.webp",
+        "../assets/Accessories/Acce1/2.webp",
+        "../assets/Accessories/Acce1/3.webp",
+      ],
+      colors: ["white"],
+      description: "Fast USB-C charging brick.",
+      features: ["USB-C PD", "Fast charge", "Overheat protection"],
+      reviews: [
+        {
+          by: "Emily Stone",
+          email: "estone@gmail.com",
+          starts: 5,
+          comment: "Charges my drone batteries super fast!",
+        },
+      ],
+    },
+
+    {
+      name: "128GB USB Drive",
+      model: "FlashX",
+      size: "128GB",
+      id: "2",
+      price: 25,
+      images: [
+        "../assets/Accessories/Acce2/1.webp",
+        "../assets/Accessories/Acce2/2.webp",
+        "../assets/Accessories/Acce2/3.webp",
+      ],
+      colors: ["black", "blue"],
+      description: "High speed USB 3.1 storage.",
+      features: ["USB 3.1", "High speed transfer", "Shock resistant"],
+      reviews: [],
+    },
+
+    ...Array.from({ length: 18 }, (_, i) => {
+      const id = (i + 3).toString();
+      return {
+        name: `Drone Tech Accessory ${id}`,
+        model: `DTA-${id}`,
+        size: "Standard",
+        id,
+        price: 15 + i * 5,
+        images: [
+          `../assets/Accessories/Accessor}/1.webp`,
+          `../assets/Accessories/Accessor}/2.webp`,
+          `../assets/Accessories/Accessor}/3.webp`,
+        ],
+        colors: ["black"],
+        description: "Useful drone tech accessory.",
+        features: ["USB-C port", "LED indicator", "Compact design"],
+        reviews:
+          i % 4 === 0
+            ? []
+            : [
+                {
+                  by: `Buyer ${id}`,
+                  email: `buyer${id}@mail.com`,
+                  starts: 4,
+                  comment: "Very useful and reliable accessory.",
+                },
+              ],
+      };
+    }),
+  ],
+};
+
+module.exports = DATA;
+*/
+
+
+
+
+const DATA = {
+    featuredDrones:["10","4","7","20"],
+  drones: [
+    {
+      name: "Sky Phantom",
+      model: "X1-Pro",
+      size: "Small",
+      id: "1",
+      price: 149,
+      images: [
+        "/src/assets/Drones/1/1.webp",
+        "/src/assets/Drones/1/2.webp",
+        "/src/assets/Drones/1/3.webp"
+      ],
+      colors: ["black", "red"],
+      description: "Compact beginner friendly drone.",
+      features: ["120m range", "720p HD camera", "Auto hover"],
+      reviews: [
+        { by: "Liam Torres", email: "liamtorres1@gmail.com", starts: 4, comment: "Very stable and easy to control." }
+      ],
+    },
+    {
+      name: "Aero Hawk",
+      model: "Z5",
+      size: "Medium",
+      id: "2",
+      price: 299,
+      images: [
+        "/src/assets/Drones/2/1.webp",
+        "/src/assets/Drones/2/2.webp",
+        "/src/assets/Drones/2/3.webp"
+      ],
+      colors: ["white", "gray"],
+      description: "Smooth aerial photography drone.",
+      features: ["4K camera", "GPS tracking", "Return home", "200m range"],
+      reviews: [],
+    },
+    {
+      name: "Storm Rider",
+      model: "V9X",
+      size: "Large",
+      id: "3",
+      price: 499,
+      images: [
+        "/src/assets/Drones/3/1.webp",
+        "/src/assets/Drones/3/2.webp",
+        "/src/assets/Drones/3/3.webp"
+      ],
+      colors: ["black"],
+      description: "High performance long flight drone.",
+      features: ["Brushless motors", "30min flight", "Wind resistant", "Obstacle avoidance", "LED night lights"],
+      reviews: [
+        { by: "Sandra Cole", email: "sandra.cole@mail.com", starts: 5, comment: "Extremely powerful and stable." },
+        { by: "Mark Wayne", email: "markwayne88@mail.com", starts: 4, comment: "Battery life is impressive." }
+      ],
+    },
+    {
+      name: "Falcon Eye",
+      model: "F200",
+      size: "Medium",
+      id: "4",
+      price: 359,
+      images: [
+        "/src/assets/Drones/4/1.webp",
+        "/src/assets/Drones/4/2.webp",
+        "/src/assets/Drones/4/3.webp"
+      ],
+      colors: ["blue", "white"],
+      description: "Photography focused quadcopter.",
+      features: ["2-axis gimbal", "1080p video", "150m range"],
+      reviews: [
+        { by: "Rachel Kim", email: "rkim22@gmail.com", starts: 5, comment: "Footage quality is amazing." }
+      ],
+    },
+    {
+      name: "Night Ranger",
+      model: "NR-77",
+      size: "Medium",
+      id: "5",
+      price: 420,
+      images: [
+        "/src/assets/Drones/5/1.webp",
+        "/src/assets/Drones/5/2.webp",
+        "/src/assets/Drones/5/3.webp"
+      ],
+      colors: ["black", "orange"],
+      description: "Built for night flying missions.",
+      features: ["Infrared camera", "Night LEDs", "GPS auto return", "25min flight"],
+      reviews: [],
+    },
+    {
+      name: "Sky Bolt",
+      model: "SB-12",
+      size: "Small",
+      id: "6",
+      price: 189,
+      images: [
+        "/src/assets/Drones/6/1.webp",
+        "/src/assets/Drones/6/2.webp",
+        "/src/assets/Drones/6/3.webp"
+      ],
+      colors: ["yellow"],
+      description: "Lightweight racing drone.",
+      features: ["High speed mode"],
+      reviews: [
+        { by: "Jason Lee", email: "jasonlee@gmail.com", starts: 3, comment: "Fun but battery drains quickly." }
+      ],
+    },
+    {
+      name: "Cloud Surfer",
+      model: "CS-90",
+      size: "Large",
+      id: "7",
+      price: 550,
+      images: [
+        "/src/assets/Drones/7/1.webp",
+        "/src/assets/Drones/7/2.webp",
+        "/src/assets/Drones/7/3.webp"
+      ],
+      colors: ["white"],
+      description: "Premium cinematic drone.",
+      features: ["4K HDR", "3-axis gimbal", "Follow me mode", "40min flight", "300m range"],
+      reviews: [
+        { by: "Nina Patel", email: "npatel@gmail.com", starts: 5, comment: "Feels like a professional drone." }
+      ],
+    },
+    {
+      name: "Wind Cutter",
+      model: "WC-3",
+      size: "Medium",
+      id: "8",
+      price: 310,
+      images: [
+        "/src/assets/Drones/8/1.webp",
+        "/src/assets/Drones/8/2.webp",
+        "/src/assets/Drones/8/3.webp"
+      ],
+      colors: ["gray"],
+      description: "Stable mid-range drone.",
+      features: ["Wind resistant", "Return home"],
+      reviews: [],
+    },
+    {
+      name: "Air Scout",
+      model: "AS-14",
+      size: "Small",
+      id: "9",
+      price: 210,
+      images: [
+        "/src/assets/Drones/9/1.webp",
+        "/src/assets/Drones/9/2.webp",
+        "/src/assets/Drones/9/3.webp"
+      ],
+      colors: ["red", "black"],
+      description: "Portable foldable drone.",
+      features: ["Foldable arms", "1080p camera", "Gesture control"],
+      reviews: [
+        { by: "Omar Reed", email: "omarreed@gmail.com", starts: 4, comment: "Very portable and easy to carry." }
+      ],
+    },
+    {
+      name: "Eagle Pro",
+      model: "EP-500",
+      size: "Large",
+      id: "10",
+      price: 699,
+      images: [
+        "/src/assets/Drones/10/1.webp",
+        "/src/assets/Drones/10/2.webp",
+        "/src/assets/Drones/10/3.webp"
+      ],
+      colors: ["black", "silver"],
+      description: "Professional filmmaking drone.",
+      features: ["6K camera", "Obstacle sensors", "50min flight", "Smart tracking", "Live streaming"],
+      reviews: [
+        { by: "Kevin Hart", email: "kevinhart@gmail.com", starts: 5, comment: "Outstanding professional quality." }
+      ],
+    },
+
+    {
+      name: "Horizon Mini",
+      model: "HM-1",
+      size: "Mini",
+      id: "11",
+      price: 129,
+      images: [
+        "/src/assets/Drones/11/1.webp",
+        "/src/assets/Drones/11/2.webp",
+        "/src/assets/Drones/11/3.webp"
+      ],
+      colors: ["white"],
+      description: "Tiny indoor drone.",
+      features: ["Indoor hover assist"],
+      reviews: [],
+    },
+    {
+      name: "Velocity Air",
+      model: "VA-22",
+      size: "Medium",
+      id: "12",
+      price: 340,
+      images: [
+        "/src/assets/Drones/12/1.webp",
+        "/src/assets/Drones/12/2.webp",
+        "/src/assets/Drones/12/3.webp"
+      ],
+      colors: ["black", "blue"],
+      description: "Fast and agile quadcopter.",
+      features: ["Sport mode", "1080p FPV", "Auto landing"],
+      reviews: [
+        { by: "Chris Nolan", email: "cnolan@mail.com", starts: 4, comment: "Very responsive controls." }
+      ],
+    },
+    {
+      name: "Titan Sky",
+      model: "TS-88",
+      size: "Large",
+      id: "13",
+      price: 620,
+      images: [
+        "/src/assets/Drones/13/1.webp",
+        "/src/assets/Drones/13/2.webp",
+        "/src/assets/Drones/13/3.webp"
+      ],
+      colors: ["gray"],
+      description: "Heavy duty long range drone.",
+      features: ["5km range", "4K camera", "Dual battery system", "GPS precision hold"],
+      reviews: [],
+    },
+    {
+      name: "Glide Master",
+      model: "GM-40",
+      size: "Medium",
+      id: "14",
+      price: 280,
+      images: [
+        "/src/assets/Drones/14/1.webp",
+        "/src/assets/Drones/14/2.webp",
+        "/src/assets/Drones/14/3.webp"
+      ],
+      colors: ["orange"],
+      description: "Balanced performance drone.",
+      features: ["1080p camera", "Auto return", "25min flight"],
+      reviews: [
+        { by: "Anna Hill", email: "annahill@gmail.com", starts: 5, comment: "Very reliable and smooth." }
+      ],
+    },
+    {
+      name: "Nova Air",
+      model: "NA-7",
+      size: "Small",
+      id: "15",
+      price: 199,
+      images: [
+        "/src/assets/Drones/15/1.webp",
+        "/src/assets/Drones/15/2.webp",
+        "/src/assets/Drones/15/3.webp"
+      ],
+      colors: ["purple"],
+      description: "Stylish compact drone.",
+      features: ["Selfie mode", "Voice control"],
+      reviews: [],
+    },
+    {
+      name: "Predator X",
+      model: "PX-9",
+      size: "Large",
+      id: "16",
+      price: 750,
+      images: [
+        "/src/assets/Drones/16/1.webp",
+        "/src/assets/Drones/16/2.webp",
+        "/src/assets/Drones/16/3.webp"
+      ],
+      colors: ["black"],
+      description: "High-end advanced drone.",
+      features: ["8K camera", "AI tracking", "Obstacle avoidance", "60min flight", "Carbon fiber body"],
+      reviews: [
+        { by: "Daniel Fox", email: "danfox@gmail.com", starts: 5, comment: "Best drone I have ever owned." }
+      ],
+    },
+    {
+      name: "Sky Ranger",
+      model: "SR-5",
+      size: "Medium",
+      id: "17",
+      price: 330,
+      images: [
+        "/src/assets/Drones/17/1.webp",
+        "/src/assets/Drones/17/2.webp",
+        "/src/assets/Drones/17/3.webp"
+      ],
+      colors: ["white", "green"],
+      description: "Outdoor adventure drone.",
+      features: ["GPS lock", "1080p camera"],
+      reviews: [],
+    },
+    {
+      name: "Aerial Pro Max",
+      model: "APM-3",
+      size: "Large",
+      id: "18",
+      price: 680,
+      images: [
+        "/src/assets/Drones/18/1.webp",
+        "/src/assets/Drones/18/2.webp",
+        "/src/assets/Drones/18/3.webp"
+      ],
+      colors: ["silver"],
+      description: "Premium aerial solution.",
+      features: ["6K HDR", "Live FPV", "45min flight", "Smart obstacle avoidance"],
+      reviews: [],
+    },
+    {
+      name: "Falcon Mini X",
+      model: "FMX-2",
+      size: "Mini",
+      id: "19",
+      price: 159,
+      images: [
+        "/src/assets/Drones/19/1.webp",
+        "/src/assets/Drones/19/2.webp",
+        "/src/assets/Drones/19/3.webp"
+      ],
+      colors: ["black", "yellow"],
+      description: "Entry level mini drone.",
+      features: ["720p camera"],
+      reviews: [],
+    },
+    {
+      name: "Infinity Sky",
+      model: "IS-100",
+      size: "Large",
+      id: "20",
+      price: 899,
+      images: [
+        "/src/assets/Drones/20/1.webp",
+        "/src/assets/Drones/20/2.webp",
+        "/src/assets/Drones/20/3.webp"
+      ],
+      colors: ["black", "gold"],
+      description: "Top-tier cinematic drone.",
+      features: ["8K ultra HD", "AI object tracking", "70min flight", "360° obstacle sensors", "Satellite GPS"],
+      reviews: [
+        { by: "Michael Grant", email: "mgrant@gmail.com", starts: 5, comment: "Absolutely next level performance." }
+      ],
+    },
+  ],
+
+  accessories: [
+    {
+      name: "Type-C Fast Charger",
+      model: "TC-20W",
+      size: "20W",
+      id: "1",
+      price: 19,
+      images: [
+        "../assets/Accessories/Acce1/1.webp",
+        "../assets/Accessories/Acce1/2.webp",
+        "../assets/Accessories/Acce1/3.webp"
+      ],
+      colors: ["white"],
+      description: "Fast USB-C wall charger.",
+      features: ["USB-C PD", "Fast charge", "Overheat protection"],
+      reviews: [],
+    },
+
+    {
+      name: "128GB USB 3.2 Drive",
+      model: "FlashPro",
+      size: "128GB",
+      id: "2",
+      price: 29,
+      images: [
+        "../assets/Accessories/Acce2/1.webp",
+        "../assets/Accessories/Acce2/2.webp",
+        "../assets/Accessories/Acce2/3.webp"
+      ],
+      colors: ["black"],
+      description: "High-speed storage device.",
+      features: ["USB 3.2", "Metal body", "Water resistant"],
+      reviews: [],
+    },
+
+    {
+      name: "Portable SSD 1TB",
+      model: "SSD-1T",
+      size: "1TB",
+      id: "3",
+      price: 120,
+      images: [
+        "../assets/Accessories/Acce3/1.webp",
+        "../assets/Accessories/Acce3/2.webp",
+        "../assets/Accessories/Acce3/3.webp"
+      ],
+      colors: ["gray"],
+      description: "Ultra fast portable SSD.",
+      features: ["USB-C", "1050MB/s speed", "Shockproof casing"],
+      reviews: [],
+    },
+
+    {
+      name: "Drone Battery Pack",
+      model: "DB-5000",
+      size: "5000mAh",
+      id: "4",
+      price: 59,
+      images: [
+        "../assets/Accessories/Acce4/1.webp",
+        "../assets/Accessories/Acce4/2.webp",
+        "../assets/Accessories/Acce4/3.webp"
+      ],
+      colors: ["black"],
+      description: "Long lasting battery pack.",
+      features: ["Fast recharge", "LED indicator"],
+      reviews: [],
+    },
+
+    {
+      name: "Wireless Charging Pad",
+      model: "WCP-15",
+      size: "15W",
+      id: "5",
+      price: 35,
+      images: [
+        "../assets/Accessories/Acce5/1.webp",
+        "../assets/Accessories/Acce5/2.webp",
+        "../assets/Accessories/Acce5/3.webp"
+      ],
+      colors: ["white"],
+      description: "Qi wireless charger.",
+      features: ["Qi support", "Fast charge", "Anti-slip base"],
+      reviews: [],
+    },
+
+    {
+      name: "Micro SD 256GB",
+      model: "MSD-256",
+      size: "256GB",
+      id: "6",
+      price: 45,
+      images: [
+        "../assets/Accessories/Acce6/1.webp",
+        "../assets/Accessories/Acce6/2.webp",
+        "../assets/Accessories/Acce6/3.webp"
+      ],
+      colors: ["black", "red"],
+      description: "High capacity memory card.",
+      features: ["UHS-I", "4K ready"],
+      reviews: [],
+    },
+
+    {
+      name: "Multi-Port USB Hub",
+      model: "Hub-7X",
+      size: "7 Ports",
+      id: "7",
+      price: 49,
+      images: [
+        "../assets/Accessories/Acce7/1.webp",
+        "../assets/Accessories/Acce7/2.webp",
+        "../assets/Accessories/Acce7/3.webp"
+      ],
+      colors: ["gray"],
+      description: "USB-C multiport hub.",
+      features: ["HDMI output", "USB 3.0", "SD card slot"],
+      reviews: [],
+    },
+
+    {
+      name: "FPV Goggles",
+      model: "FPV-9",
+      size: "Adjustable",
+      id: "8",
+      price: 199,
+      images: [
+        "../assets/Accessories/Acce8/1.webp",
+        "../assets/Accessories/Acce8/2.webp",
+        "../assets/Accessories/Acce8/3.webp"
+      ],
+      colors: ["black"],
+      description: "Immersive FPV goggles.",
+      features: ["HD display", "Low latency"],
+      reviews: [],
+    },
+
+    {
+      name: "Carbon Fiber Propellers",
+      model: "CFP-4",
+      size: "4 Pack",
+      id: "9",
+      price: 25,
+      images: [
+        "../assets/Accessories/Acce9/1.webp",
+        "../assets/Accessories/Acce9/2.webp",
+        "../assets/Accessories/Acce9/3.webp"
+      ],
+      colors: ["black"],
+      description: "Lightweight propeller set.",
+      features: ["High durability"],
+      reviews: [],
+    },
+
+    {
+      name: "Drone Carry Case",
+      model: "DCC-Pro",
+      size: "Large",
+      id: "10",
+      price: 89,
+      images: [
+        "../assets/Accessories/Acces0/1.webp",
+        "../assets/Accessories/Acces0/2.webp",
+        "../assets/Accessories/Acces0/3.webp"
+      ],
+      colors: ["black"],
+      description: "Waterproof carry case.",
+      features: ["Shockproof", "Custom foam interior"],
+      reviews: [],
+    },
+
+    {
+      name: "ND Filter Kit",
+      model: "NDK-6",
+      size: "6 Pack",
+      id: "11",
+      price: 39,
+      images: [
+        "../assets/Accessories/Acces1/1.webp",
+        "../assets/Accessories/Acces1/2.webp",
+        "../assets/Accessories/Acces1/3.webp"
+      ],
+      colors: ["black"],
+      description: "Camera ND filter set.",
+      features: ["ND4", "ND8", "ND16", "ND32"],
+      reviews: [],
+    },
+
+    {
+      name: "GPS Tracker Module",
+      model: "GPS-T1",
+      size: "Compact",
+      id: "12",
+      price: 69,
+      images: [
+        "../assets/Accessories/Acces2/1.webp",
+        "../assets/Accessories/Acces2/2.webp",
+        "../assets/Accessories/Acces2/3.webp"
+      ],
+      colors: ["black"],
+      description: "Real-time GPS tracker.",
+      features: ["Live tracking", "Mobile app support"],
+      reviews: [],
+    },
+
+    {
+      name: "USB-C Data Cable",
+      model: "USBC-1M",
+      size: "1 Meter",
+      id: "13",
+      price: 12,
+      images: [
+        "../assets/Accessories/Acces3/1.webp",
+        "../assets/Accessories/Acces3/2.webp",
+        "../assets/Accessories/Acces3/3.webp"
+      ],
+      colors: ["white"],
+      description: "High speed data cable.",
+      features: ["Fast transfer", "Durable braided"],
+      reviews: [],
+    },
+
+    {
+      name: "Landing Pad",
+      model: "LP-80",
+      size: "80cm",
+      id: "14",
+      price: 30,
+      images: [
+        "../assets/Accessories/Acces4/1.webp",
+        "../assets/Accessories/Acces4/2.webp",
+        "../assets/Accessories/Acces4/3.webp"
+      ],
+      colors: ["orange", "blue"],
+      description: "Portable drone landing pad.",
+      features: ["Water resistant", "Foldable"],
+      reviews: [],
+    },
+
+    {
+      name: "Power Bank 20000mAh",
+      model: "PB-20K",
+      size: "20000mAh",
+      id: "15",
+      price: 49,
+      images: [
+        "../assets/Accessories/Acces5/1.webp",
+        "../assets/Accessories/Acces5/2.webp",
+        "../assets/Accessories/Acces5/3.webp"
+      ],
+      colors: ["black"],
+      description: "High capacity power bank.",
+      features: ["USB-C PD", "Dual output"],
+      reviews: [],
+    },
+
+    {
+      name: "Drone Toolkit",
+      model: "DTK-1",
+      size: "Kit",
+      id: "16",
+      price: 34,
+      images: [
+        "../assets/Accessories/Acces6/1.webp",
+        "../assets/Accessories/Acces6/2.webp",
+        "../assets/Accessories/Acces6/3.webp"
+      ],
+      colors: ["black"],
+      description: "Repair toolkit set.",
+      features: ["Precision screwdrivers"],
+      reviews: [],
+    },
+
+    {
+      name: "4G LTE Module",
+      model: "LTE-4G",
+      size: "Compact",
+      id: "17",
+      price: 129,
+      images: [
+        "../assets/Accessories/Acces7/1.webp",
+        "../assets/Accessories/Acces7/2.webp",
+        "../assets/Accessories/Acces7/3.webp"
+      ],
+      colors: ["black"],
+      description: "Live streaming LTE module.",
+      features: ["4G support", "Nano SIM slot"],
+      reviews: [],
+    },
+
+    {
+      name: "VR Control Gloves",
+      model: "VRG-2",
+      size: "Adjustable",
+      id: "18",
+      price: 159,
+      images: [
+        "../assets/Accessories/Acces8/1.webp",
+        "../assets/Accessories/Acces8/2.webp",
+        "../assets/Accessories/Acces8/3.webp"
+      ],
+      colors: ["black"],
+      description: "Gesture control gloves.",
+      features: ["Motion tracking", "Bluetooth 5.0"],
+      reviews: [],
+    },
+
+    {
+      name: "Smart Remote Controller",
+      model: "SRC-10",
+      size: "Standard",
+      id: "19",
+      price: 249,
+      images: [
+        "../assets/Accessories/Acces9/1.webp",
+        "../assets/Accessories/Acces9/2.webp",
+        "../assets/Accessories/Acces9/3.webp"
+      ],
+      colors: ["black"],
+      description: "Advanced smart controller.",
+      features: ["Built-in display", "HDMI out", "Long range antenna"],
+      reviews: [],
+    },
+
+    {
+      name: "AI Obstacle Sensor Kit",
+      model: "AI-OSK",
+      size: "Module",
+      id: "20",
+      price: 179,
+      images: [
+        "../assets/Accessories/Acces0/1.webp",
+        "../assets/Accessories/Acces0/2.webp",
+        "../assets/Accessories/Acces0/3.webp"
+      ],
+      colors: ["black"],
+      description: "AI powered obstacle detection kit.",
+      features: ["360° sensing", "AI mapping", "Auto brake system"],
+      reviews: [],
+    },
+  ],
+};
+
+export default DATA;
