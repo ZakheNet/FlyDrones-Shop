@@ -2,7 +2,7 @@ import "../assets/Styles/Header.css";
 import ProfileIcon from "../assets/Icons/Profile.png";
 import SiteLogo from "../assets/Icons/DroneLogo.png";
 import { useAuth0, User } from "@auth0/auth0-react";
-import { DEV, useDevUser } from "../Api/STORE";
+import { DEV } from "../Api/STORE";
 import { useState } from "react";
 
 import LogoutIcon from "../assets/Icons/Leave.png";
@@ -11,15 +11,13 @@ import VerifiedIcon from "../assets/Icons/Correct.png";
 import backIcon from "../assets/Icons/cancel.png";
 import loadingIcon from "../assets/Icons/Drone2.png";
 import SideMenuIcon from "../assets/Icons/more.png";
-
+import { userDev } from "../Api/STORE";
 
 export default function Header() {
   const { user, isAuthenticated, isLoading, loginWithRedirect, logout } =
     useAuth0();
-  const { userDev } = useDevUser();
   const [ViewProfile, setViewProfile] = useState(false);
   const [ViewSideMenu, setViewSideMenu] = useState(false);
-  console.log(user);
 
   return (
     <>
@@ -115,10 +113,10 @@ export default function Header() {
               <p className="verifiedText">
                 {DEV || user?.email_verified
                   ? "Email Verified"
-                  : "Email not verified"}
+                  : ""}
               </p>
               <img
-                src={DEV || user?.email_verified ? VerifiedIcon : AlertIcon}
+                src={DEV || user?.email_verified ? VerifiedIcon : undefined/* AlertIcon */}
                 alt=""
                 className="verifiedIcon"
               />

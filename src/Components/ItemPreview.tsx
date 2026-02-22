@@ -5,6 +5,8 @@ import BackgroundSearch from "../assets/Backgrounds/Banner2.webp";
 import BackgroundOnSale from "../assets/Backgrounds/Banner5.webp";
 import BackgroundAllView from "../assets/Backgrounds/Banner2.webp";
 import BackgroundGeneric from "../assets/Backgrounds/Banner2.webp";
+import { HOST,DEV } from "../Api/STORE";
+const ImagePath = HOST+`${DEV?"":"public/"}Images/`
 
 export type ItemType ="FeaturedDrone"|"AllDrones"|"OnSale"|"Search"
 
@@ -50,7 +52,7 @@ export default function ItemPreview({
     >
       <h1>{name}</h1>
       <div className="ItemPrevBody">
-        <img className="previewImage" src={`${image}`} />
+        <img className="previewImage" src={`${ImagePath+image}`} />
         <div className="detailBox">
           <p className="itemPrice">{priceView}</p>
         </div>

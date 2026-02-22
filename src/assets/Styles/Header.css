@@ -173,7 +173,7 @@
 
 @media (max-width: 800px) {
   .HeadNavLinks {
-    position: absolute;
+    position: fixed;
     right: 0;
     top: 2.6rem;
     background: rgba(100, 10, 10, 1);

@@ -9,9 +9,9 @@ import SearchIcon from "../assets/Icons/SearchLogo.png";
 import filterIcon from "../assets/Icons/drop.png";
 import ItemPreview from "../Components/ItemPreview";
 import ViewAllIcon from "../assets/Icons/drop.png";
-import starIcon from "../assets/Icons/starIcon.png"
-import uncheckIcon from "../assets/Icons/uncheck.png"
-import checkIcon from "../assets/Icons/check.png"
+import starIcon from "../assets/Icons/starIcon.png";
+import uncheckIcon from "../assets/Icons/uncheck.png";
+import checkIcon from "../assets/Icons/check.png";
 import DATA from "../Api/DATA";
 import { Features } from "tailwindcss";
 import { ItemType } from "../Components/ItemPreview";
@@ -20,7 +20,6 @@ import backIcon from "../assets/Icons/cancel.png";
 import { useState } from "react";
 
 export default function Home() {
-  console.log(window.window.innerWidth);
 
   const [ViewFilterSearchBar, setViewFilterSearchBar] = useState(
     window.window.innerWidth > 800,
@@ -28,7 +27,6 @@ export default function Home() {
   const { isAuthenticated, isLoading, user, getAccessTokenSilently } =
     useAuth0();
 
-  console.log(ViewFilterSearchBar);
   const AllDrones = DATA.drones.map((drone) => {
     return MakePreview(drone, "AllDrones");
   });
@@ -37,6 +35,14 @@ export default function Home() {
       return MakePreview(drone, "FeaturedDrone");
     } else return undefined;
   });
+
+
+  const [filtRate, setFiltRate] = useState("0");
+  const [filtSize, setFiltSize] = useState("all");
+  const [filtName, setFiltName] = useState("none");
+  function Filter() {
+    const rate = "";
+  }
 
   function MakePreview(
     item: {
@@ -134,43 +140,41 @@ export default function Home() {
                 </div>
               </div>
 
-
               <div className="filterItem">
-                <p className="filterSubTittle">Drone Size:</p>
+                <p className="filterSubTittle">Star rating:</p>
                 <div className="filterActions singlePair">
                   <div className="filtInputPair singlePair">
-                    <label className="filtLabel ">Rating:</label>
+                    <label className="filtLabel ">Rating</label>
 
                     <div className="filtRatings">
-                      <div className="filtRate">
-                          <p>All</p>
-                          <img src={uncheckIcon}/>
+                      <div onClick={()=>setFiltRate("0")} className="filtRate">
+                        <p>All</p>
+                        <img src={filtRate==="0"? checkIcon:uncheckIcon} />
                       </div>
-                      {/* <div className="filtRate">
+                      {/* <div onClick={()=>setFiltRate("1")} className="filtRate">
                           <p>+1</p>
-                          <img src={uncheckIcon}/>
+                          <img src={filtRate==="1"? checkIcon:uncheckIcon}/>
                       </div> */}
-                      <div className="filtRate">
-                          <p>+2</p>
-                          <img src={uncheckIcon}/>
+                      <div onClick={()=>setFiltRate("2")} className="filtRate">
+                        <p>2</p>
+                        <img src={filtRate==="2"? checkIcon:uncheckIcon} />
                       </div>
-                      <div className="filtRate">
-                          <p>+3</p>
-                          <img src={uncheckIcon}/>
+                      <div onClick={()=>setFiltRate("3")} className="filtRate">
+                        <p>3</p>
+                        <img src={filtRate==="3"? checkIcon:uncheckIcon} />
                       </div>
-                      <div className="filtRate">
-                          <p>+4</p>
-                          <img src={uncheckIcon}/>
+                      <div onClick={()=>setFiltRate("4")} className="filtRate">
+                        <p>4</p>
+                        <img src={filtRate==="4"? checkIcon:uncheckIcon} />
                       </div>
-                      <div className="filtRate">
-                          <p>+5</p>
-                          <img src={uncheckIcon}/>
+                      <div onClick={()=>setFiltRate("5")} className="filtRate">
+                        <p>5</p>
+                        <img src={filtRate==="5"? checkIcon:uncheckIcon} />
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-
 
               <div className="filterItem">
                 <p className="filterSubTittle">Drone Size:</p>
@@ -181,6 +185,7 @@ export default function Home() {
                       name="droneSize"
                       defaultValue={"all"}
                       className="filterSizeSelect"
+                      onChange={(value)=>{setFiltSize(value.target.value)}}
                     >
                       <option value={"all"}>All</option>
                       <option value={"mini"}>Mini</option>
@@ -195,17 +200,17 @@ export default function Home() {
                 <p className="filterSubTittle">Sort By:</p>
                 <div className="filterActions singlePair">
                   <div className="filtInputPair singlePair">
-                    <label className="filtLabel ">Size</label>
+                    <label className="filtLabel ">Sort</label>
                     <select
                       name="sortBy"
                       defaultValue={"none"}
                       className="filterSizeSelect"
                     >
                       <option value={"none"}>None</option>
-                      <option value={"Name"}>Name</option>
-                      <option value={"Price Highest"}>Highest Price</option>
-                      <option value={"Price Lowest"}>Lowest Price</option>
-                      <option value={"Drone Size"}>Size</option>
+                      <option value={"lowPrice"}>Lowest Price</option>
+                      <option value={"highPrice"}>Highest Price</option>
+                      <option value={"size"}>Size</option>
+                      <option value={"name"}>Name</option>
                     </select>
                   </div>
                 </div>
@@ -220,7 +225,14 @@ export default function Home() {
             <div className="ItemListContainer">{FeaturedDrones}</div>
           </div>
           <div className="OnSale">
-            <h1>On Sale Now:</h1>
+              <div className="centerSpace">
+              <h1>On Sale:</h1>
+              <p className="viewAll">
+                <img src={ViewAllIcon} alt="" />
+                View All
+              </p>
+            </div>
+            <div className="droneCatalogue ItemListContainer">{AllDrones}</div>
           </div>
           <div className="CataLogue">
             <div className="centerSpace">

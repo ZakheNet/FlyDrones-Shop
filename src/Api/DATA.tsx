@@ -1,47 +1,35 @@
-/* const prev = require("../assets/Catalogue/Drones/1/1.webp");
-
-const DATA = {
-  drones: [
-    {
-      name: "Dragon Fly",
-      model: "M27i",
-      size: "",
-      id: "7",
-      price: 25,
-      images: ["/src/assets/Drones/7/1.webp","/src/assets/Drones/7/2.webp","/src/assets/Drones/7/3.webp"],
-      colors: ["white", "gray", "blue"],
-      description: "",
-      features: ["50m remote range", "Dust proof"],
-      reviews: [{ by: "Gwen Santa",email:"gwensanta02@gmail.com", starts: 3, comment: "This is a good products, the handling is amazing" }],
-    },
-  ],
-  accessories: [{
-      name: "4000MAh Powerbank",
-      model: "4rt",
-      size: "4000 MAh",
-      id: "3",
-      price: 25,
-      images: ["../assets/Accessories/Acce3/1.webp","../assets/Accessories/Acce3/2.webp","../assets/Accessories/Acce3/3.webp"],
-      colors: ["white"],
-      description: "",
-      features: ["Dual Charge","Upto 10 000 recharges", "drop durable"],
-      reviews: [{ by: "Hero Hunter",email:"heroguy27@gmail.com", starts: 4, comment: "Lastes the entire day, it was a life saver" }],
-    },],
+export type DataType = {
+  featuredDrones: string[];
+  accessories: any;
+  drones: {
+    name: string;
+    model: string;
+    size: string;
+    id: string;
+    price: number;
+    images: string[];
+    sale: number;
+    colors: string[];
+    description: string;
+    features: string[];
+    reviews: { by: string; userID: string; stars: number; comment: string }[];
+  }[];
 };
- 
 
-const DATA = {
+const DATA: DataType = {
+  featuredDrones: ["10", "4", "7", "20"],
   drones: [
     {
-      name: "Sky Phantom",
+      name: "Sky Wonder",
       model: "X1-Pro",
       size: "Small",
       id: "1",
       price: 149,
+      sale: 0,
       images: [
-        "/src/assets/Drones/1/1.webp",
-        "/src/assets/Drones/1/2.webp",
-        "/src/assets/Drones/1/3.webp",
+        "Drones/1/1.webp",
+        "Drones/1/2.webp",
+        "Drones/1/3.webp",
       ],
       colors: ["black", "red"],
       description: "Compact beginner friendly drone.",
@@ -49,10 +37,10 @@ const DATA = {
       reviews: [
         {
           by: "Liam Torres",
-          email: "liamtorres1@gmail.com",
-          starts: 4,
-          comment: "Perfect starter drone, very stable in air.",
-        },
+          userID: "liamtorres1@gmail.com",
+          stars: 4,
+          comment: "Very stable and easy to control.",
+        },{ by: "Gwen Santa",userID:"gwensanta02@gmail.com", stars: 3, comment: "This is a good products, the handling is amazing" },{ by: "Hero Hunter",userID:"heroguy27@gmail.com", stars: 4, comment: "Lastes the entire day, it was a life saver" }
       ],
     },
     {
@@ -61,15 +49,21 @@ const DATA = {
       size: "Medium",
       id: "2",
       price: 299,
+      sale: 25,
       images: [
-        "/src/assets/Drones/2/1.webp",
-        "/src/assets/Drones/2/2.webp",
-        "/src/assets/Drones/2/3.webp",
+        "Drones/2/1.webp",
+        "Drones/2/2.webp",
+        "Drones/2/3.webp",
       ],
       colors: ["white", "gray"],
       description: "Smooth aerial photography drone.",
-      features: ["4K Camera", "GPS tracking", "Return home", "200m range"],
-      reviews: [],
+      features: ["4K camera", "GPS tracking", "Return home", "200m range"],
+      reviews: [ {
+          by: "Liam Torres",
+          userID: "liamtorres1@gmail.com",
+          stars: 4,
+          comment: "Perfect starter drone, very stable in air.",
+        },],
     },
     {
       name: "Storm Rider",
@@ -77,10 +71,11 @@ const DATA = {
       size: "Large",
       id: "3",
       price: 499,
+      sale: 10,
       images: [
-        "/src/assets/Drones/3/1.webp",
-        "/src/assets/Drones/3/2.webp",
-        "/src/assets/Drones/3/3.webp",
+        "Drones/3/1.webp",
+        "Drones/3/2.webp",
+        "Drones/3/3.webp",
       ],
       colors: ["black"],
       description: "High performance long flight drone.",
@@ -94,29 +89,29 @@ const DATA = {
       reviews: [
         {
           by: "Sandra Cole",
-          email: "sandra.cole@mail.com",
-          starts: 5,
-          comment: "Super powerful and steady even in wind.",
+          userID: "sandra.cole@mail.com",
+          stars: 5,
+          comment: "Extremely powerful and stable.",
         },
         {
           by: "Mark Wayne",
-          email: "markwayne88@mail.com",
-          starts: 4,
+          userID: "markwayne88@mail.com",
+          stars: 4,
           comment: "Battery life is impressive.",
         },
       ],
     },
-
     {
       name: "Falcon Eye",
       model: "F200",
       size: "Medium",
       id: "4",
       price: 359,
+      sale: 0,
       images: [
-        "/src/assets/Drones/4/1.webp",
-        "/src/assets/Drones/4/2.webp",
-        "/src/assets/Drones/4/3.webp",
+        "Drones/4/1.webp",
+        "Drones/4/2.webp",
+        "Drones/4/3.webp",
       ],
       colors: ["blue", "white"],
       description: "Photography focused quadcopter.",
@@ -124,23 +119,34 @@ const DATA = {
       reviews: [
         {
           by: "Rachel Kim",
-          email: "rkim22@gmail.com",
-          starts: 5,
-          comment: "Crystal clear footage quality!",
+          userID: "rkim22@gmail.com",
+          stars: 5,
+          comment: "Footage quality is amazing.",
+        },  {
+          by: "Sandra Cole",
+          userID: "sandra.cole@mail.com",
+          stars: 5,
+          comment: "Super powerful and steady even in wind.",
+        },
+        {
+          by: "Mark Wayne",
+          userID: "markwayne88@mail.com",
+          stars: 4,
+          comment: "Battery life is impressive.",
         },
       ],
     },
-
     {
       name: "Night Ranger",
       model: "NR-77",
       size: "Medium",
       id: "5",
       price: 420,
+      sale: 15,
       images: [
-        "/src/assets/Drones/5/1.webp",
-        "/src/assets/Drones/5/2.webp",
-        "/src/assets/Drones/5/3.webp",
+        "Drones/5/1.webp",
+        "Drones/5/2.webp",
+        "Drones/5/3.webp",
       ],
       colors: ["black", "orange"],
       description: "Built for night flying missions.",
@@ -150,19 +156,29 @@ const DATA = {
         "GPS auto return",
         "25min flight",
       ],
-      reviews: [],
+      reviews: [ {
+          by: "Rachel Kim",
+          userID: "rkim22@gmail.com",
+          stars: 5,
+          comment: "Crystal clear footage quality!",
+        }, {
+          by: "Jason Lee",
+          userID: "jasonlee@gmail.com",
+          stars: 3,
+          comment: "Fun but battery drains fast.",
+        },],
     },
-
     {
       name: "Sky Bolt",
       model: "SB-12",
       size: "Small",
       id: "6",
       price: 189,
+      sale: 0,
       images: [
-        "/src/assets/Drones/6/1.webp",
-        "/src/assets/Drones/6/2.webp",
-        "/src/assets/Drones/6/3.webp",
+        "Drones/6/1.webp",
+        "Drones/6/2.webp",
+        "Drones/6/3.webp",
       ],
       colors: ["yellow"],
       description: "Lightweight racing drone.",
@@ -170,23 +186,28 @@ const DATA = {
       reviews: [
         {
           by: "Jason Lee",
-          email: "jasonlee@gmail.com",
-          starts: 3,
-          comment: "Fun but battery drains fast.",
+          userID: "jasonlee@gmail.com",
+          stars: 3,
+          comment: "Fun but battery drains quickly.",
+        },{
+          by: "Nina Patel",
+          userID: "npatel@gmail.com",
+          stars: 5,
+          comment: "Feels like a professional drone!",
         },
       ],
     },
-
     {
       name: "Cloud Surfer",
       model: "CS-90",
       size: "Large",
       id: "7",
       price: 550,
+      sale: 0,
       images: [
-        "/src/assets/Drones/7/1.webp",
-        "/src/assets/Drones/7/2.webp",
-        "/src/assets/Drones/7/3.webp",
+        "Drones/7/1.webp",
+        "Drones/7/2.webp",
+        "Drones/7/3.webp",
       ],
       colors: ["white"],
       description: "Premium cinematic drone.",
@@ -200,333 +221,28 @@ const DATA = {
       reviews: [
         {
           by: "Nina Patel",
-          email: "npatel@gmail.com",
-          starts: 5,
-          comment: "Feels like a professional drone!",
-        },
-      ],
-    },
-
-    {
-      name: "Wind Cutter",
-      model: "WC-3",
-      size: "Medium",
-      id: "8",
-      price: 310,
-      images: [
-        "/src/assets/Drones/8/1.webp",
-        "/src/assets/Drones/8/2.webp",
-        "/src/assets/Drones/8/3.webp",
-      ],
-      colors: ["gray"],
-      description: "Stable flight drone.",
-      features: ["Wind resistant", "Return home"],
-      reviews: [],
-    },
-
-    {
-      name: "Air Scout",
-      model: "AS-14",
-      size: "Small",
-      id: "9",
-      price: 210,
-      images: [
-        "/src/assets/Drones/9/1.webp",
-        "/src/assets/Drones/9/2.webp",
-        "/src/assets/Drones/9/3.webp",
-      ],
-      colors: ["red", "black"],
-      description: "Portable foldable drone.",
-      features: ["Foldable arms", "1080p camera", "Gesture control"],
-      reviews: [
-        {
+          userID: "npatel@gmail.com",
+          stars: 5,
+          comment: "Feels like a professional drone.",
+        },{
           by: "Omar Reed",
-          email: "omarreed@gmail.com",
-          starts: 4,
+          userID: "omarreed@gmail.com",
+          stars: 4,
           comment: "Very portable and easy to carry.",
         },
       ],
     },
-
-    {
-      name: "Eagle Pro",
-      model: "EP-500",
-      size: "Large",
-      id: "10",
-      price: 699,
-      images: [
-        "/src/assets/Drones/0/1.webp",
-        "/src/assets/Drones/0/2.webp",
-        "/src/assets/Drones/0/3.webp",
-      ],
-      colors: ["black", "silver"],
-      description: "Professional filmmaking drone.",
-      features: [
-        "6K Camera",
-        "Obstacle sensors",
-        "50min flight",
-        "Smart tracking",
-        "Live streaming",
-      ],
-      reviews: [
-        {
-          by: "Kevin Hart",
-          email: "kevinhart@gmail.com",
-          starts: 5,
-          comment: "Outstanding professional quality!",
-        },
-      ],
-    },
-
-    // Drones 11–20 (shortened descriptions but fully structured)
-
-    ...Array.from({ length: 10 }, (_, i) => {
-      const id = (i + 11).toString();
-      return {
-        name: `Drone Master ${id}`,
-        model: `DM-${id}`,
-        size: i % 2 === 0 ? "Medium" : "Small",
-        id,
-        price: 150 + i * 35,
-        images: [
-          `/src/assets/Drones/ron}/1.webp`,
-          `/src/assets/Drones/ron}/2.webp`,
-          `/src/assets/Drones/ron}/3.webp`,
-        ],
-        colors: ["black", "white"],
-        description: "Advanced consumer drone.",
-        features: ["HD camera", "Auto return", "Stabilization system"],
-        reviews:
-          i % 3 === 0
-            ? []
-            : [
-                {
-                  by: `User ${id}`,
-                  email: `user${id}@mail.com`,
-                  starts: 4,
-                  comment: "Very smooth controls and stable flight.",
-                },
-              ],
-      };
-    }),
-  ],
-
-  accessories: [
-    {
-      name: "Type-C Fast Charger",
-      model: "TC-20W",
-      size: "20W",
-      id: "1",
-      price: 19,
-      images: [
-        "../assets/Accessories/Acce1/1.webp",
-        "../assets/Accessories/Acce1/2.webp",
-        "../assets/Accessories/Acce1/3.webp",
-      ],
-      colors: ["white"],
-      description: "Fast USB-C charging brick.",
-      features: ["USB-C PD", "Fast charge", "Overheat protection"],
-      reviews: [
-        {
-          by: "Emily Stone",
-          email: "estone@gmail.com",
-          starts: 5,
-          comment: "Charges my drone batteries super fast!",
-        },
-      ],
-    },
-
-    {
-      name: "128GB USB Drive",
-      model: "FlashX",
-      size: "128GB",
-      id: "2",
-      price: 25,
-      images: [
-        "../assets/Accessories/Acce2/1.webp",
-        "../assets/Accessories/Acce2/2.webp",
-        "../assets/Accessories/Acce2/3.webp",
-      ],
-      colors: ["black", "blue"],
-      description: "High speed USB 3.1 storage.",
-      features: ["USB 3.1", "High speed transfer", "Shock resistant"],
-      reviews: [],
-    },
-
-    ...Array.from({ length: 18 }, (_, i) => {
-      const id = (i + 3).toString();
-      return {
-        name: `Drone Tech Accessory ${id}`,
-        model: `DTA-${id}`,
-        size: "Standard",
-        id,
-        price: 15 + i * 5,
-        images: [
-          `../assets/Accessories/Accessor}/1.webp`,
-          `../assets/Accessories/Accessor}/2.webp`,
-          `../assets/Accessories/Accessor}/3.webp`,
-        ],
-        colors: ["black"],
-        description: "Useful drone tech accessory.",
-        features: ["USB-C port", "LED indicator", "Compact design"],
-        reviews:
-          i % 4 === 0
-            ? []
-            : [
-                {
-                  by: `Buyer ${id}`,
-                  email: `buyer${id}@mail.com`,
-                  starts: 4,
-                  comment: "Very useful and reliable accessory.",
-                },
-              ],
-      };
-    }),
-  ],
-};
-
-module.exports = DATA;
-*/
-
-
-
-
-const DATA = {
-    featuredDrones:["10","4","7","20"],
-  drones: [
-    {
-      name: "Sky Phantom",
-      model: "X1-Pro",
-      size: "Small",
-      id: "1",
-      price: 149,
-      images: [
-        "/src/assets/Drones/1/1.webp",
-        "/src/assets/Drones/1/2.webp",
-        "/src/assets/Drones/1/3.webp"
-      ],
-      colors: ["black", "red"],
-      description: "Compact beginner friendly drone.",
-      features: ["120m range", "720p HD camera", "Auto hover"],
-      reviews: [
-        { by: "Liam Torres", email: "liamtorres1@gmail.com", starts: 4, comment: "Very stable and easy to control." }
-      ],
-    },
-    {
-      name: "Aero Hawk",
-      model: "Z5",
-      size: "Medium",
-      id: "2",
-      price: 299,
-      images: [
-        "/src/assets/Drones/2/1.webp",
-        "/src/assets/Drones/2/2.webp",
-        "/src/assets/Drones/2/3.webp"
-      ],
-      colors: ["white", "gray"],
-      description: "Smooth aerial photography drone.",
-      features: ["4K camera", "GPS tracking", "Return home", "200m range"],
-      reviews: [],
-    },
-    {
-      name: "Storm Rider",
-      model: "V9X",
-      size: "Large",
-      id: "3",
-      price: 499,
-      images: [
-        "/src/assets/Drones/3/1.webp",
-        "/src/assets/Drones/3/2.webp",
-        "/src/assets/Drones/3/3.webp"
-      ],
-      colors: ["black"],
-      description: "High performance long flight drone.",
-      features: ["Brushless motors", "30min flight", "Wind resistant", "Obstacle avoidance", "LED night lights"],
-      reviews: [
-        { by: "Sandra Cole", email: "sandra.cole@mail.com", starts: 5, comment: "Extremely powerful and stable." },
-        { by: "Mark Wayne", email: "markwayne88@mail.com", starts: 4, comment: "Battery life is impressive." }
-      ],
-    },
-    {
-      name: "Falcon Eye",
-      model: "F200",
-      size: "Medium",
-      id: "4",
-      price: 359,
-      images: [
-        "/src/assets/Drones/4/1.webp",
-        "/src/assets/Drones/4/2.webp",
-        "/src/assets/Drones/4/3.webp"
-      ],
-      colors: ["blue", "white"],
-      description: "Photography focused quadcopter.",
-      features: ["2-axis gimbal", "1080p video", "150m range"],
-      reviews: [
-        { by: "Rachel Kim", email: "rkim22@gmail.com", starts: 5, comment: "Footage quality is amazing." }
-      ],
-    },
-    {
-      name: "Night Ranger",
-      model: "NR-77",
-      size: "Medium",
-      id: "5",
-      price: 420,
-      images: [
-        "/src/assets/Drones/5/1.webp",
-        "/src/assets/Drones/5/2.webp",
-        "/src/assets/Drones/5/3.webp"
-      ],
-      colors: ["black", "orange"],
-      description: "Built for night flying missions.",
-      features: ["Infrared camera", "Night LEDs", "GPS auto return", "25min flight"],
-      reviews: [],
-    },
-    {
-      name: "Sky Bolt",
-      model: "SB-12",
-      size: "Small",
-      id: "6",
-      price: 189,
-      images: [
-        "/src/assets/Drones/6/1.webp",
-        "/src/assets/Drones/6/2.webp",
-        "/src/assets/Drones/6/3.webp"
-      ],
-      colors: ["yellow"],
-      description: "Lightweight racing drone.",
-      features: ["High speed mode"],
-      reviews: [
-        { by: "Jason Lee", email: "jasonlee@gmail.com", starts: 3, comment: "Fun but battery drains quickly." }
-      ],
-    },
-    {
-      name: "Cloud Surfer",
-      model: "CS-90",
-      size: "Large",
-      id: "7",
-      price: 550,
-      images: [
-        "/src/assets/Drones/7/1.webp",
-        "/src/assets/Drones/7/2.webp",
-        "/src/assets/Drones/7/3.webp"
-      ],
-      colors: ["white"],
-      description: "Premium cinematic drone.",
-      features: ["4K HDR", "3-axis gimbal", "Follow me mode", "40min flight", "300m range"],
-      reviews: [
-        { by: "Nina Patel", email: "npatel@gmail.com", starts: 5, comment: "Feels like a professional drone." }
-      ],
-    },
     {
       name: "Wind Cutter",
       model: "WC-3",
       size: "Medium",
       id: "8",
       price: 310,
+      sale: 10,
       images: [
-        "/src/assets/Drones/8/1.webp",
-        "/src/assets/Drones/8/2.webp",
-        "/src/assets/Drones/8/3.webp"
+        "Drones/8/1.webp",
+        "Drones/8/2.webp",
+        "Drones/8/3.webp",
       ],
       colors: ["gray"],
       description: "Stable mid-range drone.",
@@ -539,16 +255,27 @@ const DATA = {
       size: "Small",
       id: "9",
       price: 210,
+      sale: 0,
       images: [
-        "/src/assets/Drones/9/1.webp",
-        "/src/assets/Drones/9/2.webp",
-        "/src/assets/Drones/9/3.webp"
+        "Drones/9/1.webp",
+        "Drones/9/2.webp",
+        "Drones/9/3.webp",
       ],
       colors: ["red", "black"],
       description: "Portable foldable drone.",
       features: ["Foldable arms", "1080p camera", "Gesture control"],
       reviews: [
-        { by: "Omar Reed", email: "omarreed@gmail.com", starts: 4, comment: "Very portable and easy to carry." }
+        {
+          by: "Omar Reed",
+          userID: "omarreed@gmail.com",
+          stars: 4,
+          comment: "Very portable and easy to carry.",
+        },{
+          by: "Kevin Hart",
+          userID: "kevinhart@gmail.com",
+          stars: 5,
+          comment: "Outstanding professional quality!",
+        },
       ],
     },
     {
@@ -557,16 +284,28 @@ const DATA = {
       size: "Large",
       id: "10",
       price: 699,
+      sale: 0,
       images: [
-        "/src/assets/Drones/10/1.webp",
-        "/src/assets/Drones/10/2.webp",
-        "/src/assets/Drones/10/3.webp"
+        "Drones/10/1.webp",
+        "Drones/10/2.webp",
+        "Drones/10/3.webp",
       ],
       colors: ["black", "silver"],
       description: "Professional filmmaking drone.",
-      features: ["6K camera", "Obstacle sensors", "50min flight", "Smart tracking", "Live streaming"],
+      features: [
+        "6K camera",
+        "Obstacle sensors",
+        "50min flight",
+        "Smart tracking",
+        "Live streaming",
+      ],
       reviews: [
-        { by: "Kevin Hart", email: "kevinhart@gmail.com", starts: 5, comment: "Outstanding professional quality." }
+        {
+          by: "Kevin Hart",
+          userID: "kevinhart@gmail.com",
+          stars: 5,
+          comment: "Outstanding professional quality.",
+        },
       ],
     },
 
@@ -576,10 +315,11 @@ const DATA = {
       size: "Mini",
       id: "11",
       price: 129,
+      sale: 5,
       images: [
-        "/src/assets/Drones/11/1.webp",
-        "/src/assets/Drones/11/2.webp",
-        "/src/assets/Drones/11/3.webp"
+        "Drones/11/1.webp",
+        "Drones/11/2.webp",
+        "Drones/11/3.webp",
       ],
       colors: ["white"],
       description: "Tiny indoor drone.",
@@ -592,16 +332,22 @@ const DATA = {
       size: "Medium",
       id: "12",
       price: 340,
+      sale: 40,
       images: [
-        "/src/assets/Drones/12/1.webp",
-        "/src/assets/Drones/12/2.webp",
-        "/src/assets/Drones/12/3.webp"
+        "Drones/12/1.webp",
+        "Drones/12/2.webp",
+        "Drones/12/3.webp",
       ],
       colors: ["black", "blue"],
       description: "Fast and agile quadcopter.",
       features: ["Sport mode", "1080p FPV", "Auto landing"],
       reviews: [
-        { by: "Chris Nolan", email: "cnolan@mail.com", starts: 4, comment: "Very responsive controls." }
+        {
+          by: "Chris Nolan",
+          userID: "cnolan@mail.com",
+          stars: 4,
+          comment: "Very responsive controls.",
+        },
       ],
     },
     {
@@ -610,14 +356,20 @@ const DATA = {
       size: "Large",
       id: "13",
       price: 620,
+      sale: 0,
       images: [
-        "/src/assets/Drones/13/1.webp",
-        "/src/assets/Drones/13/2.webp",
-        "/src/assets/Drones/13/3.webp"
+        "Drones/13/1.webp",
+        "Drones/13/2.webp",
+        "Drones/13/3.webp",
       ],
       colors: ["gray"],
       description: "Heavy duty long range drone.",
-      features: ["5km range", "4K camera", "Dual battery system", "GPS precision hold"],
+      features: [
+        "5km range",
+        "4K camera",
+        "Dual battery system",
+        "GPS precision hold",
+      ],
       reviews: [],
     },
     {
@@ -626,16 +378,22 @@ const DATA = {
       size: "Medium",
       id: "14",
       price: 280,
+      sale: 0,
       images: [
-        "/src/assets/Drones/14/1.webp",
-        "/src/assets/Drones/14/2.webp",
-        "/src/assets/Drones/14/3.webp"
+        "Drones/14/1.webp",
+        "Drones/14/2.webp",
+        "Drones/14/3.webp",
       ],
       colors: ["orange"],
       description: "Balanced performance drone.",
       features: ["1080p camera", "Auto return", "25min flight"],
       reviews: [
-        { by: "Anna Hill", email: "annahill@gmail.com", starts: 5, comment: "Very reliable and smooth." }
+        {
+          by: "Anna Hill",
+          userID: "annahill@gmail.com",
+          stars: 5,
+          comment: "Very reliable and smooth.",
+        },
       ],
     },
     {
@@ -644,10 +402,11 @@ const DATA = {
       size: "Small",
       id: "15",
       price: 199,
+      sale: 20,
       images: [
-        "/src/assets/Drones/15/1.webp",
-        "/src/assets/Drones/15/2.webp",
-        "/src/assets/Drones/15/3.webp"
+        "Drones/15/1.webp",
+        "Drones/15/2.webp",
+        "Drones/15/3.webp",
       ],
       colors: ["purple"],
       description: "Stylish compact drone.",
@@ -660,16 +419,28 @@ const DATA = {
       size: "Large",
       id: "16",
       price: 750,
+      sale: 10,
       images: [
-        "/src/assets/Drones/16/1.webp",
-        "/src/assets/Drones/16/2.webp",
-        "/src/assets/Drones/16/3.webp"
+        "Drones/16/1.webp",
+        "Drones/16/2.webp",
+        "Drones/16/3.webp",
       ],
       colors: ["black"],
       description: "High-end advanced drone.",
-      features: ["8K camera", "AI tracking", "Obstacle avoidance", "60min flight", "Carbon fiber body"],
+      features: [
+        "8K camera",
+        "AI tracking",
+        "Obstacle avoidance",
+        "60min flight",
+        "Carbon fiber body",
+      ],
       reviews: [
-        { by: "Daniel Fox", email: "danfox@gmail.com", starts: 5, comment: "Best drone I have ever owned." }
+        {
+          by: "Daniel Fox",
+          userID: "danfox@gmail.com",
+          stars: 5,
+          comment: "Best drone I have ever owned.",
+        },
       ],
     },
     {
@@ -678,10 +449,11 @@ const DATA = {
       size: "Medium",
       id: "17",
       price: 330,
+      sale: 0,
       images: [
-        "/src/assets/Drones/17/1.webp",
-        "/src/assets/Drones/17/2.webp",
-        "/src/assets/Drones/17/3.webp"
+        "Drones/17/1.webp",
+        "Drones/17/2.webp",
+        "Drones/17/3.webp",
       ],
       colors: ["white", "green"],
       description: "Outdoor adventure drone.",
@@ -694,14 +466,20 @@ const DATA = {
       size: "Large",
       id: "18",
       price: 680,
+      sale: 30,
       images: [
-        "/src/assets/Drones/18/1.webp",
-        "/src/assets/Drones/18/2.webp",
-        "/src/assets/Drones/18/3.webp"
+        "Drones/18/1.webp",
+        "Drones/18/2.webp",
+        "Drones/18/3.webp",
       ],
       colors: ["silver"],
       description: "Premium aerial solution.",
-      features: ["6K HDR", "Live FPV", "45min flight", "Smart obstacle avoidance"],
+      features: [
+        "6K HDR",
+        "Live FPV",
+        "45min flight",
+        "Smart obstacle avoidance",
+      ],
       reviews: [],
     },
     {
@@ -710,10 +488,11 @@ const DATA = {
       size: "Mini",
       id: "19",
       price: 159,
+      sale: 0,
       images: [
-        "/src/assets/Drones/19/1.webp",
-        "/src/assets/Drones/19/2.webp",
-        "/src/assets/Drones/19/3.webp"
+        "Drones/19/1.webp",
+        "Drones/19/2.webp",
+        "Drones/19/3.webp",
       ],
       colors: ["black", "yellow"],
       description: "Entry level mini drone.",
@@ -726,16 +505,28 @@ const DATA = {
       size: "Large",
       id: "20",
       price: 899,
+      sale: 10,
       images: [
-        "/src/assets/Drones/20/1.webp",
-        "/src/assets/Drones/20/2.webp",
-        "/src/assets/Drones/20/3.webp"
+        "Drones/20/1.webp",
+        "Drones/20/2.webp",
+        "Drones/20/3.webp",
       ],
       colors: ["black", "gold"],
       description: "Top-tier cinematic drone.",
-      features: ["8K ultra HD", "AI object tracking", "70min flight", "360° obstacle sensors", "Satellite GPS"],
+      features: [
+        "8K ultra HD",
+        "AI object tracking",
+        "70min flight",
+        "360° obstacle sensors",
+        "Satellite GPS",
+      ],
       reviews: [
-        { by: "Michael Grant", email: "mgrant@gmail.com", starts: 5, comment: "Absolutely next level performance." }
+        {
+          by: "Michael Grant",
+          userID: "mgrant@gmail.com",
+          stars: 5,
+          comment: "Absolutely next level performance.",
+        },
       ],
     },
   ],
@@ -747,10 +538,11 @@ const DATA = {
       size: "20W",
       id: "1",
       price: 19,
+      sale: 0,
       images: [
         "../assets/Accessories/Acce1/1.webp",
         "../assets/Accessories/Acce1/2.webp",
-        "../assets/Accessories/Acce1/3.webp"
+        "../assets/Accessories/Acce1/3.webp",
       ],
       colors: ["white"],
       description: "Fast USB-C wall charger.",
@@ -764,10 +556,11 @@ const DATA = {
       size: "128GB",
       id: "2",
       price: 29,
+      sale: 5,
       images: [
         "../assets/Accessories/Acce2/1.webp",
         "../assets/Accessories/Acce2/2.webp",
-        "../assets/Accessories/Acce2/3.webp"
+        "../assets/Accessories/Acce2/3.webp",
       ],
       colors: ["black"],
       description: "High-speed storage device.",
@@ -781,10 +574,11 @@ const DATA = {
       size: "1TB",
       id: "3",
       price: 120,
+      sale: 0,
       images: [
         "../assets/Accessories/Acce3/1.webp",
         "../assets/Accessories/Acce3/2.webp",
-        "../assets/Accessories/Acce3/3.webp"
+        "../assets/Accessories/Acce3/3.webp",
       ],
       colors: ["gray"],
       description: "Ultra fast portable SSD.",
@@ -798,10 +592,11 @@ const DATA = {
       size: "5000mAh",
       id: "4",
       price: 59,
+      sale: 30,
       images: [
         "../assets/Accessories/Acce4/1.webp",
         "../assets/Accessories/Acce4/2.webp",
-        "../assets/Accessories/Acce4/3.webp"
+        "../assets/Accessories/Acce4/3.webp",
       ],
       colors: ["black"],
       description: "Long lasting battery pack.",
@@ -815,10 +610,11 @@ const DATA = {
       size: "15W",
       id: "5",
       price: 35,
+      sale: 0,
       images: [
         "../assets/Accessories/Acce5/1.webp",
         "../assets/Accessories/Acce5/2.webp",
-        "../assets/Accessories/Acce5/3.webp"
+        "../assets/Accessories/Acce5/3.webp",
       ],
       colors: ["white"],
       description: "Qi wireless charger.",
@@ -832,10 +628,11 @@ const DATA = {
       size: "256GB",
       id: "6",
       price: 45,
+      sale: 20,
       images: [
         "../assets/Accessories/Acce6/1.webp",
         "../assets/Accessories/Acce6/2.webp",
-        "../assets/Accessories/Acce6/3.webp"
+        "../assets/Accessories/Acce6/3.webp",
       ],
       colors: ["black", "red"],
       description: "High capacity memory card.",
@@ -849,10 +646,11 @@ const DATA = {
       size: "7 Ports",
       id: "7",
       price: 49,
+      sale: 20,
       images: [
         "../assets/Accessories/Acce7/1.webp",
         "../assets/Accessories/Acce7/2.webp",
-        "../assets/Accessories/Acce7/3.webp"
+        "../assets/Accessories/Acce7/3.webp",
       ],
       colors: ["gray"],
       description: "USB-C multiport hub.",
@@ -866,10 +664,11 @@ const DATA = {
       size: "Adjustable",
       id: "8",
       price: 199,
+      sale: 0,
       images: [
         "../assets/Accessories/Acce8/1.webp",
         "../assets/Accessories/Acce8/2.webp",
-        "../assets/Accessories/Acce8/3.webp"
+        "../assets/Accessories/Acce8/3.webp",
       ],
       colors: ["black"],
       description: "Immersive FPV goggles.",
@@ -883,10 +682,11 @@ const DATA = {
       size: "4 Pack",
       id: "9",
       price: 25,
+      sale: 20,
       images: [
         "../assets/Accessories/Acce9/1.webp",
         "../assets/Accessories/Acce9/2.webp",
-        "../assets/Accessories/Acce9/3.webp"
+        "../assets/Accessories/Acce9/3.webp",
       ],
       colors: ["black"],
       description: "Lightweight propeller set.",
@@ -900,10 +700,11 @@ const DATA = {
       size: "Large",
       id: "10",
       price: 89,
+      sale: 0,
       images: [
         "../assets/Accessories/Acces0/1.webp",
         "../assets/Accessories/Acces0/2.webp",
-        "../assets/Accessories/Acces0/3.webp"
+        "../assets/Accessories/Acces0/3.webp",
       ],
       colors: ["black"],
       description: "Waterproof carry case.",
@@ -917,10 +718,11 @@ const DATA = {
       size: "6 Pack",
       id: "11",
       price: 39,
+      sale: 10,
       images: [
         "../assets/Accessories/Acces1/1.webp",
         "../assets/Accessories/Acces1/2.webp",
-        "../assets/Accessories/Acces1/3.webp"
+        "../assets/Accessories/Acces1/3.webp",
       ],
       colors: ["black"],
       description: "Camera ND filter set.",
@@ -934,10 +736,11 @@ const DATA = {
       size: "Compact",
       id: "12",
       price: 69,
+      sale: 0,
       images: [
         "../assets/Accessories/Acces2/1.webp",
         "../assets/Accessories/Acces2/2.webp",
-        "../assets/Accessories/Acces2/3.webp"
+        "../assets/Accessories/Acces2/3.webp",
       ],
       colors: ["black"],
       description: "Real-time GPS tracker.",
@@ -951,10 +754,11 @@ const DATA = {
       size: "1 Meter",
       id: "13",
       price: 12,
+      sale: 0,
       images: [
         "../assets/Accessories/Acces3/1.webp",
         "../assets/Accessories/Acces3/2.webp",
-        "../assets/Accessories/Acces3/3.webp"
+        "../assets/Accessories/Acces3/3.webp",
       ],
       colors: ["white"],
       description: "High speed data cable.",
@@ -968,10 +772,11 @@ const DATA = {
       size: "80cm",
       id: "14",
       price: 30,
+      sale: 15,
       images: [
         "../assets/Accessories/Acces4/1.webp",
         "../assets/Accessories/Acces4/2.webp",
-        "../assets/Accessories/Acces4/3.webp"
+        "../assets/Accessories/Acces4/3.webp",
       ],
       colors: ["orange", "blue"],
       description: "Portable drone landing pad.",
@@ -985,10 +790,11 @@ const DATA = {
       size: "20000mAh",
       id: "15",
       price: 49,
+      sale: 0,
       images: [
         "../assets/Accessories/Acces5/1.webp",
         "../assets/Accessories/Acces5/2.webp",
-        "../assets/Accessories/Acces5/3.webp"
+        "../assets/Accessories/Acces5/3.webp",
       ],
       colors: ["black"],
       description: "High capacity power bank.",
@@ -1002,10 +808,11 @@ const DATA = {
       size: "Kit",
       id: "16",
       price: 34,
+      sale: 0,
       images: [
         "../assets/Accessories/Acces6/1.webp",
         "../assets/Accessories/Acces6/2.webp",
-        "../assets/Accessories/Acces6/3.webp"
+        "../assets/Accessories/Acces6/3.webp",
       ],
       colors: ["black"],
       description: "Repair toolkit set.",
@@ -1019,10 +826,11 @@ const DATA = {
       size: "Compact",
       id: "17",
       price: 129,
+      sale: 5,
       images: [
         "../assets/Accessories/Acces7/1.webp",
         "../assets/Accessories/Acces7/2.webp",
-        "../assets/Accessories/Acces7/3.webp"
+        "../assets/Accessories/Acces7/3.webp",
       ],
       colors: ["black"],
       description: "Live streaming LTE module.",
@@ -1036,10 +844,11 @@ const DATA = {
       size: "Adjustable",
       id: "18",
       price: 159,
+      sale: 0,
       images: [
         "../assets/Accessories/Acces8/1.webp",
         "../assets/Accessories/Acces8/2.webp",
-        "../assets/Accessories/Acces8/3.webp"
+        "../assets/Accessories/Acces8/3.webp",
       ],
       colors: ["black"],
       description: "Gesture control gloves.",
@@ -1053,10 +862,11 @@ const DATA = {
       size: "Standard",
       id: "19",
       price: 249,
+      sale: 0,
       images: [
         "../assets/Accessories/Acces9/1.webp",
         "../assets/Accessories/Acces9/2.webp",
-        "../assets/Accessories/Acces9/3.webp"
+        "../assets/Accessories/Acces9/3.webp",
       ],
       colors: ["black"],
       description: "Advanced smart controller.",
@@ -1070,10 +880,11 @@ const DATA = {
       size: "Module",
       id: "20",
       price: 179,
+      sale: 0,
       images: [
         "../assets/Accessories/Acces0/1.webp",
         "../assets/Accessories/Acces0/2.webp",
-        "../assets/Accessories/Acces0/3.webp"
+        "../assets/Accessories/Acces0/3.webp",
       ],
       colors: ["black"],
       description: "AI powered obstacle detection kit.",
