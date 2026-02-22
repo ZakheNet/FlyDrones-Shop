@@ -1,5 +1,5 @@
 import { create } from "zustand";
-export const DEV = false
+export const DEV = true
 
 export const useOnPage = create((set) => ({
   OnPage: "home",

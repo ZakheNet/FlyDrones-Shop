@@ -15,10 +15,8 @@ import { ItemType } from "../Components/ItemPreview";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Home() {
-
-  const {isAuthenticated,isLoading,user,getAccessTokenSilently} = useAuth0()
-
-
+  const { isAuthenticated, isLoading, user, getAccessTokenSilently } =
+    useAuth0();
 
   const AllDrones = DATA.drones.map((drone) => {
     return MakePreview(drone, "AllDrones");
@@ -74,25 +72,57 @@ export default function Home() {
           </button>
         </div>
       </div>
-      <section className="MainContent">
-        <div className="featured">
-          <h1>Featured:</h1>
-          <div className="ItemListContainer">{FeaturedDrones}</div>
+
+      <div className="filterMainPair">
+        <div className="filterSystem">
+          <h1>FILTER</h1>
         </div>
-        <div className="OnSale">
-          <h1>On Sale Now:</h1>
-        </div>
-        <div className="CataLogue">
-          <div className="centerSpace">
-            <h1>Catalogue:</h1>
-            <p className="viewAll">
-              <img src={ViewAllIcon} alt="" />
-              View All
-            </p>
+        <section className="MainContent">
+          <div className="featured">
+            <h1>Featured:</h1>
+            <div className="ItemListContainer">{FeaturedDrones}</div>
           </div>
-          <div className="droneCatalogue ItemListContainer">{AllDrones}</div>
-        </div>
-      </section>
+          <div className="OnSale">
+            <h1>On Sale Now:</h1>
+          </div>
+          <div className="CataLogue">
+            <div className="centerSpace">
+              <h1>Catalogue:</h1>
+              <p className="viewAll">
+                <img src={ViewAllIcon} alt="" />
+                View All
+              </p>
+            </div>
+            <div className="droneCatalogue ItemListContainer">{AllDrones}</div>
+          </div>
+        </section>
+      </div>
+
+      <h1>...</h1>
+      <h1>...</h1>
+      <h1>...</h1>
+      <h1>...</h1>
+      <h1>...</h1>
+      <h1>...</h1>
+      <h1>...</h1>
+      <h1>...</h1>
+      <h1>...</h1>
+      <h1>...</h1>
+      <h1>...</h1>
+      <h1>...</h1>
+      <h1>...</h1>
+      <h1>...</h1>
+      <h1>...</h1>
+      <h1>...</h1>
+      <h1>...</h1>
+      <h1>...</h1>
+      <h1>...</h1>
+      <h1>...</h1>
+      <h1>...</h1>
+      <h1>...</h1>
+      <h1>...</h1>
+      <h1>...</h1>
+      <h1>...</h1>
     </section>
   );
 }

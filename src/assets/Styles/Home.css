@@ -1,4 +1,4 @@
-.HomePage{
+.HomePage {
   width: 100%;
 }
 .Showcase {
@@ -14,6 +14,8 @@
   border-radius: 2rem;
   box-shadow: black 0.2rem 0.2rem 0.3rem;
 }
+
+
 .droneFloating {
   background-image: url("../Models/DroneModel2.png");
   height: 40rem;
@@ -23,9 +25,7 @@
   filter: drop-shadow(rgba(0, 0, 0, 0.7) 0.4rem 0.7rem 0.2rem);
   max-width: 45vw;
 }
-.MainContent{
-  z-index: -1;
-}
+
 .SearchSystem {
   background: white;
   top: 2.6rem;
@@ -34,7 +34,7 @@
   display: flex;
   justify-content: space-between;
   padding: 0.3rem 1rem;
-  z-index: 0;
+  z-index: 1;
   gap: 2vw;
   width: 100%;
   .FilterBar {
@@ -66,14 +66,14 @@
     justify-content: space-between;
     padding: 0.15rem 2rem;
     border-radius: 3rem;
-    max-width: min(60vw,45rem);
+    max-width: min(60vw, 45rem);
     input {
       height: 100%;
       font-size: 1.5rem;
       padding: 0 1rem;
       border: none;
       flex: 0.99;
-      max-width: 40VW;
+      max-width: 40vw;
     }
     .searchBtn {
       height: 100%;
@@ -88,8 +88,10 @@
       img {
         height: 130%;
       }
-      @media (max-width:780px) {
-        .searchTittle{display: none;}
+      @media (max-width: 780px) {
+        .searchTittle {
+          display: none;
+        }
       }
     }
   }
@@ -100,4 +102,21 @@
   flex-wrap: wrap;
   gap: 1rem;
   padding: 1rem 2rem;
+}
+
+.filterMainPair{display: flex;}
+
+.filterSystem {
+  background: rgba(120, 20, 20, 1);
+  max-width: min(50vw,17rem);
+  width: 15rem;
+  height: calc(100vh - 5.4rem);
+  position: sticky;
+  top: 5.4rem;
+  z-index: -1;
+}
+
+.MainContent {
+  z-index:0;
+  flex: 1;
 }

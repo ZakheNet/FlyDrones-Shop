@@ -20,7 +20,7 @@
 .SearchSystem {
   animation: SearchSystem;
   animation-timeline: view();
-  animation-range: entry 50% cover 40%;
+  animation-range: entry 50% cover 20%;
   @media (max-width: 1400px) {
     animation-range: entry 50% cover 10%;
   }
@@ -33,10 +33,14 @@
     z-index: -1;
     box-shadow: none;
   }
+  60%{z-index: -1;}
   90% {
-    z-index: -1;
+    z-index: 1;
     box-shadow: none;
   }
+100%{
+    z-index: 1;
+}
 }
 
 .loading{
@@ -50,3 +54,9 @@
     transform: rotate(360deg);
   }
 }
+
+.HeadNavLinks,.ProfileView{animation: HeadNavLinks 0.35s;}
+@keyframes HeadNavLinks{
+  from{transform: translateX(100%);}
+}
+
