@@ -6,18 +6,29 @@ import DroneModel1 from "../assets/Models/DroneModel1.png";
 import DroneModel2 from "../assets/Models/DroneModel2.png";
 import DroneModel3 from "../assets/Models/DroneModel3.png";
 import SearchIcon from "../assets/Icons/SearchLogo.png";
-import filterIcon from "../assets/Icons/settings.png";
+import filterIcon from "../assets/Icons/drop.png";
 import ItemPreview from "../Components/ItemPreview";
 import ViewAllIcon from "../assets/Icons/drop.png";
+import starIcon from "../assets/Icons/starIcon.png"
+import uncheckIcon from "../assets/Icons/uncheck.png"
+import checkIcon from "../assets/Icons/check.png"
 import DATA from "../Api/DATA";
 import { Features } from "tailwindcss";
 import { ItemType } from "../Components/ItemPreview";
 import { useAuth0 } from "@auth0/auth0-react";
+import backIcon from "../assets/Icons/cancel.png";
+import { useState } from "react";
 
 export default function Home() {
+  console.log(window.window.innerWidth);
+
+  const [ViewFilterSearchBar, setViewFilterSearchBar] = useState(
+    window.window.innerWidth > 800,
+  );
   const { isAuthenticated, isLoading, user, getAccessTokenSilently } =
     useAuth0();
 
+  console.log(ViewFilterSearchBar);
   const AllDrones = DATA.drones.map((drone) => {
     return MakePreview(drone, "AllDrones");
   });
@@ -60,9 +71,20 @@ export default function Home() {
         </div>
       </div>
       <div id="SearchSystem" className="SearchSystem">
-        <button className="FilterBar">
+        <button
+          onClick={() => {
+            setViewFilterSearchBar(!ViewFilterSearchBar);
+          }}
+          className="FilterBar"
+        >
           <p>Filter</p>
-          <img src={filterIcon} alt="" />
+          <img
+            src={filterIcon}
+            style={
+              ViewFilterSearchBar ? undefined : { transform: "rotate(-90deg)" }
+            }
+            alt=""
+          />
         </button>
         <div className="SearchBar">
           <input type="text" placeholder="Search..." />
@@ -74,9 +96,124 @@ export default function Home() {
       </div>
 
       <div className="filterMainPair">
-        <div className="filterSystem">
-          <h1>FILTER</h1>
-        </div>
+        {ViewFilterSearchBar ? (
+          <div className="filterSystem">
+            <div className="filterTopBar">
+              <h1 className="filterSerchTittle">Filter Search</h1>
+              <button
+                onClick={() => setViewFilterSearchBar(false)}
+                className="HideFilterBtn"
+              >
+                <img src={backIcon} alt="" />
+              </button>
+            </div>
+            <div className="filterTypes">
+              <div className="filterItem">
+                <p className="filterSubTittle">Price range:</p>
+                <div className="filterActions">
+                  <div className="filtInputPair">
+                    <label className="filtLabel">Min</label>
+                    <input
+                      min={0}
+                      max={1000000}
+                      type="number"
+                      placeholder="Min Price"
+                      name="minPrice"
+                    />
+                  </div>
+                  <div className="filtInputPair">
+                    <label className="filtLabel">Max</label>
+                    <input
+                      min={0}
+                      max={1000000}
+                      type="number"
+                      placeholder="Max Price"
+                      name="minPrice"
+                    />
+                  </div>
+                </div>
+              </div>
+
+
+              <div className="filterItem">
+                <p className="filterSubTittle">Drone Size:</p>
+                <div className="filterActions singlePair">
+                  <div className="filtInputPair singlePair">
+                    <label className="filtLabel ">Rating:</label>
+
+                    <div className="filtRatings">
+                      <div className="filtRate">
+                          <p>All</p>
+                          <img src={uncheckIcon}/>
+                      </div>
+                      {/* <div className="filtRate">
+                          <p>+1</p>
+                          <img src={uncheckIcon}/>
+                      </div> */}
+                      <div className="filtRate">
+                          <p>+2</p>
+                          <img src={uncheckIcon}/>
+                      </div>
+                      <div className="filtRate">
+                          <p>+3</p>
+                          <img src={uncheckIcon}/>
+                      </div>
+                      <div className="filtRate">
+                          <p>+4</p>
+                          <img src={uncheckIcon}/>
+                      </div>
+                      <div className="filtRate">
+                          <p>+5</p>
+                          <img src={uncheckIcon}/>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div className="filterItem">
+                <p className="filterSubTittle">Drone Size:</p>
+                <div className="filterActions singlePair">
+                  <div className="filtInputPair singlePair">
+                    <label className="filtLabel ">Size</label>
+                    <select
+                      name="droneSize"
+                      defaultValue={"all"}
+                      className="filterSizeSelect"
+                    >
+                      <option value={"all"}>All</option>
+                      <option value={"mini"}>Mini</option>
+                      <option value={"small"}>Small</option>
+                      <option value={"medium"}>Medium</option>
+                      <option value={"large"}>Large</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div className="filterItem">
+                <p className="filterSubTittle">Sort By:</p>
+                <div className="filterActions singlePair">
+                  <div className="filtInputPair singlePair">
+                    <label className="filtLabel ">Size</label>
+                    <select
+                      name="sortBy"
+                      defaultValue={"none"}
+                      className="filterSizeSelect"
+                    >
+                      <option value={"none"}>None</option>
+                      <option value={"Name"}>Name</option>
+                      <option value={"Price Highest"}>Highest Price</option>
+                      <option value={"Price Lowest"}>Lowest Price</option>
+                      <option value={"Drone Size"}>Size</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : undefined}
+
         <section className="MainContent">
           <div className="featured">
             <h1>Featured:</h1>
@@ -98,6 +235,7 @@ export default function Home() {
         </section>
       </div>
 
+      {/*       <h1>...</h1>
       <h1>...</h1>
       <h1>...</h1>
       <h1>...</h1>
@@ -121,8 +259,7 @@ export default function Home() {
       <h1>...</h1>
       <h1>...</h1>
       <h1>...</h1>
-      <h1>...</h1>
-      <h1>...</h1>
+      <h1>...</h1> */}
     </section>
   );
 }

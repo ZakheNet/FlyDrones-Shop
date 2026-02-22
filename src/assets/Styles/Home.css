@@ -15,7 +15,6 @@
   box-shadow: black 0.2rem 0.2rem 0.3rem;
 }
 
-
 .droneFloating {
   background-image: url("../Models/DroneModel2.png");
   height: 40rem;
@@ -43,17 +42,17 @@
     font-size: 1.5rem;
     font-weight: bold;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     border: none;
     border-radius: 3rem;
     background: rgba(120, 20, 20, 1);
     color: white;
-    gap: 0.4rem;
+
     align-items: center;
     height: 2.2rem;
     img {
       filter: invert();
-      height: 100%;
+      height: 70%;
       aspect-ratio: 1/1;
     }
   }
@@ -104,19 +103,126 @@
   padding: 1rem 2rem;
 }
 
-.filterMainPair{display: flex;}
+.MainContent {
+  z-index: 0;
+  flex: 1;
+}
+
+.filterMainPair {
+  display: flex;
+  position: relative;
+}
 
 .filterSystem {
   background: rgba(120, 20, 20, 1);
-  max-width: min(50vw,17rem);
-  width: 15rem;
+  max-width: clamp(18rem, 55vw, 20rem);
+  width: fit-content;
   height: calc(100vh - 5.4rem);
   position: sticky;
   top: 5.4rem;
-  z-index: -1;
+}
+.HideFilterBtn {
+  display: none;
+}
+@media (max-width: 730px) {
+  .filterSystem {
+    position: fixed;
+    z-index: 1;
+  }
+  .SearchSystem {
+  }
+  .HideFilterBtn {
+    display: block;
+  }
 }
 
-.MainContent {
-  z-index:0;
-  flex: 1;
+.filterActions {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.filterItem {
+  padding: 0.2rem;
+  color: white;
+}
+.filterSubTittle {
+  font-size: 1.5rem;
+}
+.filterTypes {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.filtInputPair {
+  display: flex;
+  flex-wrap: wrap;
+  width: 45%;
+  font-size: 1.2rem;
+  p {
+    width: fit-content;
+  }
+  input {
+    font-size: 1.2rem;
+    width: 100%;
+    max-width: 100%;
+    border: none;
+    padding: 0.2rem;
+  }
+}
+.filterTopBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.4rem 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  margin-bottom: 1rem;
+}
+.HideFilterBtn {
+  height: 2rem;
+  width: 2rem;
+  background: none;
+  border: none;
+  padding: 0.3rem;
+  img {
+    height: 100%;
+    aspect-ratio: 1/1;
+  }
+}
+.filterSerchTittle {
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+.singlePair {
+  justify-content: start;
+  flex-direction: column;
+  padding: 0 2%;
+  width: 100%;
+}
+.filterSizeSelect {
+  font-size: 1.2rem;
+  width: 100%;
+  padding: 0.2rem;
+  border: none;
+}
+
+option:checked {
+  font-weight: bold;
+}
+.filtRatings{
+  display: flex;gap: 0.2rem;
+}
+.filtRate {
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  align-items: center;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 1.5rem;
+  img {
+    height: 1.5rem;
+    width: 1.5rem;
+    filter: invert();
+  }
 }
