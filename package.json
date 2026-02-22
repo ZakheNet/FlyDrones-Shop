@@ -1,4 +1,4 @@
-{"homepage": "zakhenet.github.io/<REPO_NAME",
+{"homepage": "zakhenet.github.io/FlyDrones-Shop",
   "name": "react-template-full",
   "private": true,
   "version": "0.0.0",
@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview","predeploy": "npm run build", "deploy": "gh-pages -d build"},
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"},
   "dependencies": {
     "@auth0/auth0-react": "^2.15.0",
     "@reduxjs/toolkit": "^2.8.2",
