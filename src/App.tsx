@@ -10,7 +10,8 @@ export default function App() {
       <BrowserRouter>
       <Header />
         <Routes>
-          <Route path="/" element={<Home/>}>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/FlyDrones-Shop/" element={<Home/>}>
 
           </Route>
         </Routes>
