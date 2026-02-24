@@ -1,11 +1,3 @@
-.centerSpace {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.2rem 1rem;
-}
-
 .ItemCard {
   box-shadow: rgba(0, 0, 0, 0.37) 0 0 0.2rem;
   background: white;
@@ -15,6 +7,7 @@
   background-size: cover;
   border-radius: 0.5rem;
   flex-direction: column;
+  position: relative;
 }
 .ItemPreview:hover,
 .viewAll:hover {
@@ -86,4 +79,31 @@
   img {
     height: 1.5rem;
   }
+}
+
+.ItemFeatures {
+  display: flex;
+  gap: 1rem;
+  font-size: 1rem;
+  max-width: 100%;
+  overflow: hidden;
+  padding: 0.3rem 0;
+}
+.featureText {
+  text-wrap: nowrap;
+}
+.featureText::before {
+  content: "• ";
+}
+
+.saleAmount {
+  font-size: 1.2rem;
+  font-weight: bold;
+  background: rgb(0, 140, 255);
+  color: white;
+  width: fit-content;
+  padding: 0.4rem;
+  border-radius: 0.3rem;
+  position: absolute;
+  right: 4%;
 }

@@ -13,22 +13,22 @@ import starIcon from "../assets/Icons/starIcon.png";
 import uncheckIcon from "../assets/Icons/uncheck.png";
 import checkIcon from "../assets/Icons/check.png";
 import { Features } from "tailwindcss";
-import { ItemType } from "../Components/ItemPreview";
+import { PreviewType } from "../Components/ItemPreview";
 import { useAuth0 } from "@auth0/auth0-react";
 import backIcon from "../assets/Icons/cancel.png";
 import { useEffect, useState } from "react";
-import  { DataType } from "../Api/DataTypes";
+import  { DataType,ItemType } from "../Api/DataTypes";
 import { HOST } from "../Api/STORE";
 
 export default function Home() {
   const [DATA, setDATA] = useState<DataType>(undefined);
   const [AllDrones, setAllDrones] = useState<any>(undefined);
-  const [FeaturedDrones, setFeaturedDrones] = useState();
+  const [FeaturedDrones, setFeaturedDrones]=useState<any>();
 
   useEffect(() => {
     async function GetData() {
       try {
-        const res = await fetch(HOST+"stock/");
+        const res = await fetch(HOST+"Stock");
 
         const resData = await res.json()
 
@@ -38,18 +38,6 @@ export default function Home() {
       }
     }
     GetData();
-
-    if (DATA) {
-      const preAllDrones = DATA.drones.map((drone) => {
-        return MakePreview(drone, "AllDrones");
-      });
-      setAllDrones(preAllDrones);
-      const FeaturedDrones = DATA.drones.map((drone) => {
-        if (DATA.featuredDrones.includes(drone.id.toString())) {
-          return MakePreview(drone, "FeaturedDrone");
-        } else return undefined;
-      });
-    }
   }, []);
 
   useEffect(()=>{
@@ -58,11 +46,11 @@ export default function Home() {
         return MakePreview(drone, "AllDrones");
       });
       setAllDrones(preAllDrones);
-      const FeaturedDrones = DATA.drones.map((drone) => {
-        if (DATA.featuredDrones.includes(drone.id.toString())) {
-          return MakePreview(drone, "FeaturedDrone");
-        } else return undefined;
-      });
+
+      const preFeaturedDrones = DATA.drones.filter(drone=>DATA.featuredDrones.includes(drone.id)).map(drone=> {
+        return MakePreview(drone, "FeaturedDrone");
+      })
+      setFeaturedDrones(preFeaturedDrones)
     }
   },[DATA])
 
@@ -80,21 +68,13 @@ export default function Home() {
   }
 
   function MakePreview(
-    item: {
-      id: string;
-      images: string[];
-      name: string;
-      price: number;
-    },
-    from: ItemType,
+    item: ItemType,
+    from: PreviewType,
   ) {
     return (
       <ItemPreview
+      item={item}
         itemFrom={from}
-        key={item.id}
-        image={item.images[0]}
-        name={item.name}
-        price={item.price}
       />
     );
   }
@@ -273,12 +253,14 @@ export default function Home() {
 
         <section className="MainContent">
           <div className="featured">
-            <h1>Featured:</h1>
+            <div className="ItemsListHead">
+            <p >Featured:</p>
+            </div>
             <div className="ItemListContainer">{FeaturedDrones}</div>
           </div>
           <div className="OnSale">
-            <div className="centerSpace">
-              <h1>On Sale:</h1>
+            <div className="ItemsListHead">
+              <p>On Sale:</p>
               <p className="viewAll">
                 <img src={ViewAllIcon} alt="" />
                 View All
@@ -287,8 +269,8 @@ export default function Home() {
             <div className="droneCatalogue ItemListContainer">{AllDrones}</div>
           </div>
           <div className="CataLogue">
-            <div className="centerSpace">
-              <h1>Catalogue:</h1>
+            <div className="ItemsListHead">
+              <p>Catalogue:</p>
               <p className="viewAll">
                 <img src={ViewAllIcon} alt="" />
                 View All

@@ -5,25 +5,21 @@ import BackgroundSearch from "../assets/Backgrounds/Banner2.webp";
 import BackgroundOnSale from "../assets/Backgrounds/Banner5.webp";
 import BackgroundAllView from "../assets/Backgrounds/Banner2.webp";
 import BackgroundGeneric from "../assets/Backgrounds/Banner2.webp"; */
-import SaleIcon from "../assets/Icons/Sale.png"
+import SaleIcon from "../assets/Icons/Sale.png";
 
+import { ItemType } from "../Api/DataTypes";
 import { HOST, DEV } from "../Api/STORE";
-
 
 const ImagePath = HOST + `${DEV ? "" : "public/"}Images/`;
 
-export type ItemType = "FeaturedDrone" | "AllDrones" | "OnSale" | "Search";
+export type PreviewType = "FeaturedDrone" | "AllDrones" | "OnSale" | "Search";
 
 export default function ItemPreview({
-  image,
-  name,
-  price,
+  item,
   itemFrom,
 }: {
-  itemFrom: ItemType;
-  image: string;
-  name: string;
-  price: number;
+  itemFrom: PreviewType;
+  item: ItemType;
 }) {
   /*    function GetBackground(from:ItemType){
         switch (from) {
@@ -49,18 +45,30 @@ export default function ItemPreview({
     return "R" + newPrice;
   }
 
-  const priceView = PricePresentation(price);
+
 
   return (
     <div className="ItemCard">
-      <img src={SaleIcon} alt="" className="saleIcon" />
+      {item.sale>0?<img src={SaleIcon} alt="" className="saleIcon" />:undefined}
       <div className="ItemPrevBody">
-        <img className="previewImage" src={`${ImagePath + image}`} />
-        <p className="itemName">{name}</p>
+        
+        <img className="previewImage" src={`${ImagePath + item.images[0]}`} />
+        {item.sale>0?<p className="saleAmount">{item.sale}% Off</p>:undefined}
+        <p className="itemName">{item.name}</p>
+        <div className="ItemFeatures">
+          <p className="featureText">Feature 1 </p>
+          <p className="featureText">Some other</p>
+        </div>
         <div className="detailBox">
           <div className="priceBox">
-            <p className="itemPrice">{priceView}</p>
-            <p className="discounted">{}4556</p>
+            <p className="itemPrice">
+              {item.sale === 0
+                ? PricePresentation(item.price)
+                : PricePresentation((item.price - (item.sale / 100) * item.price))}
+            </p>
+            <p className="discounted">
+              {item.sale > 0 ? PricePresentation(item.price) : undefined}
+            </p>
           </div>
         </div>
       </div>
