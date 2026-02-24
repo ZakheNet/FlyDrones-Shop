@@ -1,5 +1,5 @@
 import { create } from "zustand";
-export const DEV = true;
+export const DEV = false;
 export const HOST = DEV
   ? "http://localhost:3000/"
   : "https://flydronesserver.netlify.app/";
