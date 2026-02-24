@@ -12,30 +12,65 @@ import ViewAllIcon from "../assets/Icons/drop.png";
 import starIcon from "../assets/Icons/starIcon.png";
 import uncheckIcon from "../assets/Icons/uncheck.png";
 import checkIcon from "../assets/Icons/check.png";
-import DATA from "../Api/DATA";
 import { Features } from "tailwindcss";
 import { ItemType } from "../Components/ItemPreview";
 import { useAuth0 } from "@auth0/auth0-react";
 import backIcon from "../assets/Icons/cancel.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import  { DataType } from "../Api/DataTypes";
+import { HOST } from "../Api/STORE";
 
 export default function Home() {
+  const [DATA, setDATA] = useState<DataType>(undefined);
+  const [AllDrones, setAllDrones] = useState<any>(undefined);
+  const [FeaturedDrones, setFeaturedDrones] = useState();
+
+  useEffect(() => {
+    async function GetData() {
+      try {
+        const res = await fetch(HOST+"stock/");
+
+        const resData = await res.json()
+
+        setDATA(resData);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    GetData();
+
+    if (DATA) {
+      const preAllDrones = DATA.drones.map((drone) => {
+        return MakePreview(drone, "AllDrones");
+      });
+      setAllDrones(preAllDrones);
+      const FeaturedDrones = DATA.drones.map((drone) => {
+        if (DATA.featuredDrones.includes(drone.id.toString())) {
+          return MakePreview(drone, "FeaturedDrone");
+        } else return undefined;
+      });
+    }
+  }, []);
+
+  useEffect(()=>{
+     if (DATA) {
+      const preAllDrones = DATA.drones.map((drone) => {
+        return MakePreview(drone, "AllDrones");
+      });
+      setAllDrones(preAllDrones);
+      const FeaturedDrones = DATA.drones.map((drone) => {
+        if (DATA.featuredDrones.includes(drone.id.toString())) {
+          return MakePreview(drone, "FeaturedDrone");
+        } else return undefined;
+      });
+    }
+  },[DATA])
 
   const [ViewFilterSearchBar, setViewFilterSearchBar] = useState(
     window.window.innerWidth > 800,
   );
   const { isAuthenticated, isLoading, user, getAccessTokenSilently } =
     useAuth0();
-
-  const AllDrones = DATA.drones.map((drone) => {
-    return MakePreview(drone, "AllDrones");
-  });
-  const FeaturedDrones = DATA.drones.map((drone) => {
-    if (DATA.featuredDrones.includes(drone.id.toString())) {
-      return MakePreview(drone, "FeaturedDrone");
-    } else return undefined;
-  });
-
 
   const [filtRate, setFiltRate] = useState("0");
   const [filtSize, setFiltSize] = useState("all");
@@ -147,29 +182,44 @@ export default function Home() {
                     <label className="filtLabel ">Rating</label>
 
                     <div className="filtRatings">
-                      <div onClick={()=>setFiltRate("0")} className="filtRate">
+                      <div
+                        onClick={() => setFiltRate("0")}
+                        className="filtRate"
+                      >
                         <p>All</p>
-                        <img src={filtRate==="0"? checkIcon:uncheckIcon} />
+                        <img src={filtRate === "0" ? checkIcon : uncheckIcon} />
                       </div>
                       {/* <div onClick={()=>setFiltRate("1")} className="filtRate">
                           <p>+1</p>
                           <img src={filtRate==="1"? checkIcon:uncheckIcon}/>
                       </div> */}
-                      <div onClick={()=>setFiltRate("2")} className="filtRate">
+                      <div
+                        onClick={() => setFiltRate("2")}
+                        className="filtRate"
+                      >
                         <p>2</p>
-                        <img src={filtRate==="2"? checkIcon:uncheckIcon} />
+                        <img src={filtRate === "2" ? checkIcon : uncheckIcon} />
                       </div>
-                      <div onClick={()=>setFiltRate("3")} className="filtRate">
+                      <div
+                        onClick={() => setFiltRate("3")}
+                        className="filtRate"
+                      >
                         <p>3</p>
-                        <img src={filtRate==="3"? checkIcon:uncheckIcon} />
+                        <img src={filtRate === "3" ? checkIcon : uncheckIcon} />
                       </div>
-                      <div onClick={()=>setFiltRate("4")} className="filtRate">
+                      <div
+                        onClick={() => setFiltRate("4")}
+                        className="filtRate"
+                      >
                         <p>4</p>
-                        <img src={filtRate==="4"? checkIcon:uncheckIcon} />
+                        <img src={filtRate === "4" ? checkIcon : uncheckIcon} />
                       </div>
-                      <div onClick={()=>setFiltRate("5")} className="filtRate">
+                      <div
+                        onClick={() => setFiltRate("5")}
+                        className="filtRate"
+                      >
                         <p>5</p>
-                        <img src={filtRate==="5"? checkIcon:uncheckIcon} />
+                        <img src={filtRate === "5" ? checkIcon : uncheckIcon} />
                       </div>
                     </div>
                   </div>
@@ -185,7 +235,9 @@ export default function Home() {
                       name="droneSize"
                       defaultValue={"all"}
                       className="filterSizeSelect"
-                      onChange={(value)=>{setFiltSize(value.target.value)}}
+                      onChange={(value) => {
+                        setFiltSize(value.target.value);
+                      }}
                     >
                       <option value={"all"}>All</option>
                       <option value={"mini"}>Mini</option>
@@ -225,7 +277,7 @@ export default function Home() {
             <div className="ItemListContainer">{FeaturedDrones}</div>
           </div>
           <div className="OnSale">
-              <div className="centerSpace">
+            <div className="centerSpace">
               <h1>On Sale:</h1>
               <p className="viewAll">
                 <img src={ViewAllIcon} alt="" />

@@ -1,28 +1,31 @@
 import "../assets/Styles/Item.css";
 const test = "/src/assets/Drones/1/1.webp";
-import BackgroundFeatured from "../assets/Backgrounds/Banner5.webp";
+/* import BackgroundFeatured from "../assets/Backgrounds/Banner5.webp";
 import BackgroundSearch from "../assets/Backgrounds/Banner2.webp";
 import BackgroundOnSale from "../assets/Backgrounds/Banner5.webp";
 import BackgroundAllView from "../assets/Backgrounds/Banner2.webp";
-import BackgroundGeneric from "../assets/Backgrounds/Banner2.webp";
-import { HOST,DEV } from "../Api/STORE";
-const ImagePath = HOST+`${DEV?"":"public/"}Images/`
+import BackgroundGeneric from "../assets/Backgrounds/Banner2.webp"; */
+import SaleIcon from "../assets/Icons/Sale.png"
 
-export type ItemType ="FeaturedDrone"|"AllDrones"|"OnSale"|"Search"
+import { HOST, DEV } from "../Api/STORE";
+
+
+const ImagePath = HOST + `${DEV ? "" : "public/"}Images/`;
+
+export type ItemType = "FeaturedDrone" | "AllDrones" | "OnSale" | "Search";
 
 export default function ItemPreview({
   image,
   name,
   price,
-  itemFrom
+  itemFrom,
 }: {
-    itemFrom:ItemType;
+  itemFrom: ItemType;
   image: string;
   name: string;
   price: number;
 }) {
-
-    function GetBackground(from:ItemType){
+  /*    function GetBackground(from:ItemType){
         switch (from) {
             case "AllDrones": return BackgroundAllView
             case "FeaturedDrone": return BackgroundFeatured
@@ -30,31 +33,35 @@ export default function ItemPreview({
             case "Search": return BackgroundSearch
             default:return BackgroundGeneric
         }
+    } */
+
+  function PricePresentation(price: number) {
+    let newPrice = "R0";
+    const ammount = price * 16;
+    newPrice = ammount.toString();
+    if (ammount.toString().length > 3) {
+      newPrice =
+        newPrice.slice(0, newPrice.length - 3) +
+        " " +
+        newPrice.slice(newPrice.length - 3);
     }
 
-    function PricePresentation(price:number){
-        let newPrice="R0"
-        const ammount = price*16
-        newPrice=ammount.toString()
-        if(ammount.toString().length>3){
-            newPrice=newPrice.slice(0,newPrice.length-3)+" "+newPrice.slice(newPrice.length-3)
-        }
+    return "R" + newPrice;
+  }
 
-        return "R"+newPrice
-    }
-
-    const priceView=PricePresentation(price)
+  const priceView = PricePresentation(price);
 
   return (
-    <div
-      style={{ backgroundImage: `url(${GetBackground(itemFrom)})` }}
-      className="ItemPreview"
-    >
-      <h1>{name}</h1>
+    <div className="ItemCard">
+      <img src={SaleIcon} alt="" className="saleIcon" />
       <div className="ItemPrevBody">
-        <img className="previewImage" src={`${ImagePath+image}`} />
+        <img className="previewImage" src={`${ImagePath + image}`} />
+        <p className="itemName">{name}</p>
         <div className="detailBox">
-          <p className="itemPrice">{priceView}</p>
+          <div className="priceBox">
+            <p className="itemPrice">{priceView}</p>
+            <p className="discounted">{}4556</p>
+          </div>
         </div>
       </div>
     </div>

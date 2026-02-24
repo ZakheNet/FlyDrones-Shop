@@ -101,11 +101,30 @@
   flex-wrap: wrap;
   gap: 1rem;
   padding: 1rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
 }
+@media (max-width: 1500px) {
+  .ItemListContainer {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (max-width: 1200px) {
+  .ItemListContainer {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 950px) {
+  .ItemListContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 
 .MainContent {
   z-index: 0;
   flex: 1;
+  background: rgba(0, 0, 0, 0.075);
 }
 
 .filterMainPair {
@@ -120,13 +139,13 @@
   height: calc(100vh - 5.4rem);
   position: sticky;
   top: 5.4rem;
-  overflow-y: scroll;
+  overflow-y: auto;
   padding-bottom: 2rem;
 }
 .HideFilterBtn {
   display: none;
 }
-@media (max-width: 730px) {
+@media (max-width: 900px) {
   .filterSystem {
     position: fixed;
     z-index: 1;
@@ -211,8 +230,9 @@
 option:checked {
   font-weight: bold;
 }
-.filtRatings{
-  display: flex;gap: 0.2rem;
+.filtRatings {
+  display: flex;
+  gap: 0.2rem;
   width: 100%;
   justify-content: space-evenly;
   flex-wrap: wrap;

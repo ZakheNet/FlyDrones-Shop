@@ -1,7 +1,7 @@
 import "../assets/Styles/Header.css";
 import ProfileIcon from "../assets/Icons/Profile.png";
 import SiteLogo from "../assets/Icons/DroneLogo.png";
-import { useAuth0, User } from "@auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 import { DEV } from "../Api/STORE";
 import { useState } from "react";
 
@@ -27,9 +27,15 @@ export default function Header() {
             <img src={SiteLogo} />
             <p className="storeTittle">DroneApex</p>
           </div>
-        <button onClick={()=>{setViewSideMenu(!ViewSideMenu);setViewProfile(false)}} className={`SideMenuToggle`}>
-          <img src={SideMenuIcon} alt="" />
-        </button>
+          <button
+            onClick={() => {
+              setViewSideMenu(!ViewSideMenu);
+              setViewProfile(false);
+            }}
+            className={`SideMenuToggle`}
+          >
+            <img src={SideMenuIcon} alt="" />
+          </button>
         </div>
         <div className="HeadMenu">
           <nav
@@ -41,15 +47,16 @@ export default function Header() {
             {isLoading ? undefined : <a href="#">Favourites</a>}
             {isLoading ? undefined : (
               <a
-                onClick={() =>
-                  {AuthAction(
+                onClick={() => {
+                  AuthAction(
                     isAuthenticated,
                     ViewProfile,
                     setViewProfile,
                     loginWithRedirect,
                     DEV,
-                  );setViewSideMenu(false)}
-                }
+                  );
+                  setViewSideMenu(false);
+                }}
               >
                 {isAuthenticated && (user?.given_name || user?.nickname)
                   ? `${user.given_name || user.nickname}`
@@ -68,7 +75,10 @@ export default function Header() {
               </a>
             )}
 
-            <button onClick={() => setViewSideMenu(false)} className="cancelBtn sideCloseBtn">
+            <button
+              onClick={() => setViewSideMenu(false)}
+              className="cancelBtn sideCloseBtn"
+            >
               <img src={backIcon} alt="" className="cancelIcon" />
               CLOSE
             </button>
@@ -111,12 +121,14 @@ export default function Header() {
             </p>
             <div className="verifiedEmail">
               <p className="verifiedText">
-                {DEV || user?.email_verified
-                  ? "Email Verified"
-                  : ""}
+                {DEV || user?.email_verified ? "Email Verified" : ""}
               </p>
               <img
-                src={DEV || user?.email_verified ? VerifiedIcon : undefined/* AlertIcon */}
+                src={
+                  DEV || user?.email_verified
+                    ? VerifiedIcon
+                    : undefined /* AlertIcon */
+                }
                 alt=""
                 className="verifiedIcon"
               />
@@ -130,7 +142,13 @@ export default function Header() {
               <img src={LogoutIcon} alt="" className="logOutIcon" /> Logout
             </button>
 
-            <button onClick={() =>  {setViewProfile(false); setViewSideMenu(false)} } className="cancelBtn">
+            <button
+              onClick={() => {
+                setViewProfile(false);
+                setViewSideMenu(false);
+              }}
+              className="cancelBtn"
+            >
               <img src={backIcon} alt="" className="cancelIcon" />
               CLOSE
             </button>
@@ -148,9 +166,13 @@ function AuthAction(
   loginWithRedirect: any,
   DEV: boolean,
 ) {
+  console.log();
   if (isAuthenticated || DEV) {
     setViewProfile(!ViewProfile);
   } else {
-    loginWithRedirect();
+    
+      loginWithRedirect()
+      
+
   }
 }
