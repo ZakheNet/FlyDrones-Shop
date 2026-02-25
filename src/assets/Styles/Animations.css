@@ -33,17 +33,19 @@
     z-index: -1;
     box-shadow: none;
   }
-  60%{z-index: -1;}
+  60% {
+    z-index: -1;
+  }
   90% {
     z-index: 1;
     box-shadow: none;
   }
-100%{
+  100% {
     z-index: 1;
-}
+  }
 }
 
-.loading{
+.loading {
   animation: loading 3s linear infinite;
 }
 @keyframes loading {
@@ -55,8 +57,20 @@
   }
 }
 
-.HeadNavLinks,.ProfileView{animation: HeadNavLinks 0.35s;}
-@keyframes HeadNavLinks{
-  from{transform: translateX(100%);}
+.HeadNavLinks,
+.ProfileView {
+  animation: HeadNavLinks 0.35s;
 }
+@keyframes HeadNavLinks {
+  from {
+    transform: translateX(100%);
+  }
+}
+.FrontWordsBox {
+  animation: spinColor 5s infinite;
+}
+@keyframes spinColor {
 
+}
+.spinColor {
+}

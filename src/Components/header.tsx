@@ -3,7 +3,7 @@ import ProfileIcon from "../assets/Icons/Profile.png";
 import SiteLogo from "../assets/Icons/DroneLogo.png";
 import { useAuth0 } from "@auth0/auth0-react";
 import { DEV } from "../Api/STORE";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import LogoutIcon from "../assets/Icons/Leave.png";
 import AlertIcon from "../assets/Icons/alert.png";
@@ -12,6 +12,7 @@ import backIcon from "../assets/Icons/cancel.png";
 import loadingIcon from "../assets/Icons/Drone2.png";
 import SideMenuIcon from "../assets/Icons/more.png";
 import { userDev } from "../Api/STORE";
+import { UpdateUserData } from "../Api/ServerFunctions";
 
 export default function Header() {
   const { user, isAuthenticated, isLoading, loginWithRedirect, logout } =
@@ -19,13 +20,15 @@ export default function Header() {
   const [ViewProfile, setViewProfile] = useState(false);
   const [ViewSideMenu, setViewSideMenu] = useState(false);
 
+  UpdateUserData();
+
   return (
     <>
       <header className="Header">
         <div className="sideMenuTottleBox">
           <div className="logos">
             <img src={SiteLogo} />
-            <p className="storeTittle">DroneApex</p>
+            <p className="storeTittle font14">FlyDrones</p>
           </div>
           <button
             onClick={() => {
@@ -170,9 +173,6 @@ function AuthAction(
   if (isAuthenticated || DEV) {
     setViewProfile(!ViewProfile);
   } else {
-    
-      loginWithRedirect()
-      
-
+    loginWithRedirect();
   }
 }

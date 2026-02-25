@@ -13,17 +13,49 @@
   margin: 1rem;
   border-radius: 2rem;
   box-shadow: black 0.2rem 0.2rem 0.3rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.FrontWordsBox {
+  background: conic-gradient(
+    from 0deg,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0),
+    rgba(0, 0, 255, 0),
+    gold,
+    rgba(0, 0, 255, 0)
+  ); 
+  position: relative;
+  padding:  0.5rem;
+  border-radius: 1rem;
+}
+.FrontWordsBackground {
+  padding: 0.5rem 1rem;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background: rgba(0, 15, 59, 0.719);
+  border-radius: 0.7rem;
 }
 
-.droneFloating {
-  background-image: url("../Models/DroneModel2.png");
-  height: 40rem;
-  width: 40rem;
+.HomeTittle {
+  font-size: 6rem;
+  color: white;
 }
+.tittleSlogan{
+  text-align: center;
+  font-size: 3rem;
+  color: white;
+}
+
+
 .droneModel {
   filter: drop-shadow(rgba(0, 0, 0, 0.7) 0.4rem 0.7rem 0.2rem);
   max-width: 45vw;
 }
+.droneHovering{height: 15rem;}
 
 .SearchSystem {
   background: white;
@@ -120,7 +152,6 @@
   }
 }
 
-
 .MainContent {
   z-index: 0;
   flex: 1;
@@ -212,6 +243,7 @@
 .filterSerchTittle {
   font-weight: 500;
   font-size: 1.5rem;
+  color: white;
 }
 
 .singlePair {
@@ -238,6 +270,7 @@ option:checked {
   flex-wrap: wrap;
 }
 .filtRate {
+  font-family: font2;
   display: flex;
   flex-direction: row;
   width: fit-content;

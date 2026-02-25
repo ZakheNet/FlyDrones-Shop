@@ -18,11 +18,3 @@ createRoot(document.getElementById("root")).render(
     </Auth0Provider>
   </StrictMode>,
 );
-
-/* 
-VITE_AUTH0_DOMAIN="kingbadsanta.us.auth0.com"
-VITE_AUTH0_CLIENT_ID="Auw5dQkOcOTt9Oidlr4C1yLg9QsmhQIA"
-
-domain={import.meta.env.VITE_AUTH0_DOMAIN}
-clientId={import.meta.env.VITE_AUTH0_CLIENT_ID}
-*/

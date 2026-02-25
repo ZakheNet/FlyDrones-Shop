@@ -1,0 +1,77 @@
+@font-face {
+    font-family: font14;
+    src: url("../fonts/1979RG__.TTF");
+}
+
+@font-face {
+    font-family: font1;
+    src: url("../fonts/ADVANCEB.TTF");
+}
+@font-face {
+    font-family: font2;
+    src: url("../fonts/Aerolinea.ttf");
+}
+
+@font-face {
+    font-family: font3;
+    src: url("../fonts/amarurgt.ttf");
+}
+@font-face {
+    font-family: font4;
+    src: url("../fonts/Attari_Aseer.ttf");
+}
+@font-face {
+    font-family: font13;
+    src: url("../fonts/AUSPROBE.TTF");
+}
+@font-face {
+    font-family: font5;
+    src: url("../fonts/Avgardd.ttf");
+}
+@font-face {
+    font-family: font12;
+    src: url("../fonts/Bajazzo.ttf");
+}
+
+@font-face {
+    font-family: font7;
+    src: url("../fonts/Cargo\ Two\ SF.TTF");
+}
+
+@font-face {
+    font-family: font11;
+    src: url("../fonts/Edo.ttf");
+}
+
+@font-face {
+    font-family: font10;
+    src: url("../fonts/Farcry.ttf");
+}
+
+@font-face {
+    font-family: font9;
+    src: url("../fonts/Jillican\ Heavy\ Italic.ttf");
+}
+@font-face {
+    font-family: font8;
+    src: url("../fonts/Kimberley\ Alternate.ttf");
+}
+@font-face {
+    font-family: font6;
+    src: url("../fonts/Puschkin.ttf");
+}
+
+.font1{font-family: font1}
+.font2{font-family: font2}
+.font3{font-family: font3}
+.font4{font-family: font4}
+.font5{font-family: font5}
+.font6{font-family: font6}
+.font7{font-family: font7}
+.font8{font-family: font8}
+.font9{font-family: font9}
+.font10{font-family: font10}
+.font11{font-family: font11}
+.font12{font-family: font12}
+.font13{font-family: font13}
+.font14{font-family: font14}

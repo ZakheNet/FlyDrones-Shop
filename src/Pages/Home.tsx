@@ -7,30 +7,31 @@ import DroneModel2 from "../assets/Models/DroneModel2.png";
 import DroneModel3 from "../assets/Models/DroneModel3.png";
 import SearchIcon from "../assets/Icons/SearchLogo.png";
 import filterIcon from "../assets/Icons/drop.png";
-import ItemPreview from "../Components/ItemPreview";
+import ItemPreview from "../Components/ItemCard";
 import ViewAllIcon from "../assets/Icons/drop.png";
 import starIcon from "../assets/Icons/starIcon.png";
 import uncheckIcon from "../assets/Icons/uncheck.png";
 import checkIcon from "../assets/Icons/check.png";
 import { Features } from "tailwindcss";
-import { PreviewType } from "../Components/ItemPreview";
 import { useAuth0 } from "@auth0/auth0-react";
 import backIcon from "../assets/Icons/cancel.png";
 import { useEffect, useState } from "react";
-import  { DataType,ItemType } from "../Api/DataTypes";
+import { DataType, ItemType,PreviewType } from "../Api/DataTypes";
 import { HOST } from "../Api/STORE";
+import Footer from "../Components/footer";
+import DroneIcon from "../assets/Models/DroneModel1.png";
 
 export default function Home() {
   const [DATA, setDATA] = useState<DataType>(undefined);
   const [AllDrones, setAllDrones] = useState<any>(undefined);
-  const [FeaturedDrones, setFeaturedDrones]=useState<any>();
+  const [FeaturedDrones, setFeaturedDrones] = useState<any>();
 
   useEffect(() => {
     async function GetData() {
       try {
-        const res = await fetch(HOST+"Stock");
+        const res = await fetch(HOST + "Stock");
 
-        const resData = await res.json()
+        const resData = await res.json();
 
         setDATA(resData);
       } catch (e) {
@@ -40,19 +41,21 @@ export default function Home() {
     GetData();
   }, []);
 
-  useEffect(()=>{
-     if (DATA) {
+  useEffect(() => {
+    if (DATA) {
       const preAllDrones = DATA.drones.map((drone) => {
         return MakePreview(drone, "AllDrones");
       });
       setAllDrones(preAllDrones);
 
-      const preFeaturedDrones = DATA.drones.filter(drone=>DATA.featuredDrones.includes(drone.id)).map(drone=> {
-        return MakePreview(drone, "FeaturedDrone");
-      })
-      setFeaturedDrones(preFeaturedDrones)
+      const preFeaturedDrones = DATA.drones
+        .filter((drone) => DATA.featuredDrones.includes(drone.id))
+        .map((drone) => {
+          return MakePreview(drone, "FeaturedDrone");
+        });
+      setFeaturedDrones(preFeaturedDrones);
     }
-  },[DATA])
+  }, [DATA]);
 
   const [ViewFilterSearchBar, setViewFilterSearchBar] = useState(
     window.window.innerWidth > 800,
@@ -67,28 +70,27 @@ export default function Home() {
     const rate = "";
   }
 
-  function MakePreview(
-    item: ItemType,
-    from: PreviewType,
-  ) {
-    return (
-      <ItemPreview
-      item={item}
-        itemFrom={from}
-      />
-    );
+  function MakePreview(item: ItemType, from: PreviewType) {
+    return <ItemPreview key={item.id} item={item} itemFrom={from} />;
   }
 
   return (
     <section className="HomePage">
       <div className="Showcase">
         <div>
-          <img
+          <div className="FrontWordsBox">
+            <div className="FrontWordsBackground">
+              <img
             draggable={false}
             src={DroneModel3}
             alt=""
             className="droneHovering droneModel"
           />
+              <p className="HomeTittle font13">FLY DRONES</p>
+            </div>
+          </div>
+          <p className="tittleSlogan font14">Providing revolutionary flying</p>
+          
         </div>
       </div>
       <div id="SearchSystem" className="SearchSystem">
@@ -120,7 +122,7 @@ export default function Home() {
         {ViewFilterSearchBar ? (
           <div className="filterSystem">
             <div className="filterTopBar">
-              <h1 className="filterSerchTittle">Filter Search</h1>
+              <h1 className="filterSerchTittle font1">FILTER SEARCH</h1>
               <button
                 onClick={() => setViewFilterSearchBar(false)}
                 className="HideFilterBtn"
@@ -130,10 +132,10 @@ export default function Home() {
             </div>
             <div className="filterTypes">
               <div className="filterItem">
-                <p className="filterSubTittle">Price range:</p>
+                <p className="filterSubTittle font1">Price range:</p>
                 <div className="filterActions">
                   <div className="filtInputPair">
-                    <label className="filtLabel">Min</label>
+                    <label className="filtLabel font5">Min</label>
                     <input
                       min={0}
                       max={1000000}
@@ -143,7 +145,7 @@ export default function Home() {
                     />
                   </div>
                   <div className="filtInputPair">
-                    <label className="filtLabel">Max</label>
+                    <label className="filtLabel font5">Max</label>
                     <input
                       min={0}
                       max={1000000}
@@ -156,10 +158,10 @@ export default function Home() {
               </div>
 
               <div className="filterItem">
-                <p className="filterSubTittle">Star rating:</p>
+                <p className="filterSubTittle font1">Star rating:</p>
                 <div className="filterActions singlePair">
                   <div className="filtInputPair singlePair">
-                    <label className="filtLabel ">Rating</label>
+                    <label className="filtLabel font5 ">Rating</label>
 
                     <div className="filtRatings">
                       <div
@@ -207,10 +209,10 @@ export default function Home() {
               </div>
 
               <div className="filterItem">
-                <p className="filterSubTittle">Drone Size:</p>
+                <p className="filterSubTittle font1">Drone Size:</p>
                 <div className="filterActions singlePair">
                   <div className="filtInputPair singlePair">
-                    <label className="filtLabel ">Size</label>
+                    <label className="filtLabel font5 ">Size</label>
                     <select
                       name="droneSize"
                       defaultValue={"all"}
@@ -229,10 +231,10 @@ export default function Home() {
                 </div>
               </div>
               <div className="filterItem">
-                <p className="filterSubTittle">Sort By:</p>
+                <p className="filterSubTittle font1">Sort By:</p>
                 <div className="filterActions singlePair">
                   <div className="filtInputPair singlePair">
-                    <label className="filtLabel ">Sort</label>
+                    <label className="filtLabel font5 ">Sort</label>
                     <select
                       name="sortBy"
                       defaultValue={"none"}
@@ -254,7 +256,7 @@ export default function Home() {
         <section className="MainContent">
           <div className="featured">
             <div className="ItemsListHead">
-            <p >Featured:</p>
+              <p>Featured:</p>
             </div>
             <div className="ItemListContainer">{FeaturedDrones}</div>
           </div>
@@ -268,6 +270,17 @@ export default function Home() {
             </div>
             <div className="droneCatalogue ItemListContainer">{AllDrones}</div>
           </div>
+          <div className="CataLogue">
+            <div className="ItemsListHead">
+              <p>Catalogue:</p>
+              <p className="viewAll">
+                <img src={ViewAllIcon} alt="" />
+                View All
+              </p>
+            </div>
+            <div className="droneCatalogue ItemListContainer">{AllDrones}</div>
+          </div>
+          
           <div className="CataLogue">
             <div className="ItemsListHead">
               <p>Catalogue:</p>
@@ -306,6 +319,7 @@ export default function Home() {
       <h1>...</h1>
       <h1>...</h1>
       <h1>...</h1> */}
+      <Footer />
     </section>
   );
 }
