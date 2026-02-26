@@ -3,6 +3,7 @@ const test = "/src/assets/Drones/1/1.webp";
 import SaleIcon from "../assets/Icons/Sale.png";
 import LikedIcon from "../assets/Icons/HearlLove.png";
 import unLikedIcon from "../assets/Icons/HeartOpen.png";
+import StartIcon from "../assets/Icons/StarGold.png";
 import { SetFavourite, SetNotFavourite } from "../Api/ServerFunctions";
 
 import { ItemType, PreviewType } from "../Api/DataTypes";
@@ -34,60 +35,93 @@ export default function ItemPreview({
   }
 
   const { favourites } = useProfile();
-  const { user, isAuthenticated,loginWithRedirect } = useAuth0();
+  const { user, isAuthenticated, loginWithRedirect } = useAuth0();
 
   const [isFavourite, setIsFavourite] = useState(favourites.includes(item.id));
 
   function HandleLike() {
     if (isAuthenticated || DEV) {
       if (user || DEV) {
-          setIsFavourite(!isFavourite);
+        setIsFavourite(!isFavourite);
         if (isFavourite) {
           SetNotFavourite(item.id, DEV ? userDev : user);
         } else {
           SetFavourite(item.id, DEV ? userDev : user);
         }
+      } else {
+        loginWithRedirect();
       }
-      else{
-        loginWithRedirect()
-      }
+    }
+  }
+
+  function GetStars(drone: ItemType) {
+    let totalStars = 0;
+    const reviews = drone.reviews.length;
+    if (reviews <= 0) {
+      return "0";
+    }
+    if (reviews > 0) {
+      drone.reviews.forEach((review) => {
+        review.stars;
+        totalStars += review.stars;
+      });
+    }
+
+    try {
+      const rate = parseFloat((totalStars / reviews).toFixed(1));
+
+      return rate.toString().length==1? rate+".0":rate;
+    } catch {
+      return "0";
     }
   }
 
   return (
     <div className="ItemCard">
-      {item.sale > 0 ? (
-        <img src={SaleIcon} alt="" className="saleIcon" />
-      ) : undefined}
+      <div className="upperCard">
+        {item.sale > 0 ? (
+          <img src={SaleIcon} alt="" className="saleIcon" />
+        ) : undefined}
 
-      <button
-        onClick={() => {
-          HandleLike();
-        }}
-        className="LikeButton"
-      >
-        <img
-          src={isFavourite ? LikedIcon : unLikedIcon}
-          alt=""
-          className="likeIcon"
-        />
-      </button>
+        <button
+          onClick={() => {
+            HandleLike();
+          }}
+          className="LikeButton"
+        >
+          <img
+            src={isFavourite ? LikedIcon : unLikedIcon}
+            alt=""
+            className="likeIcon"
+          />
+        </button>
 
-      <div className="ItemPrevBody">
-        <div className="ImagePrevBox">
-          <img className="previewImage" src={`${ImagePath + item.images[0]}`} />
-          {item.sale > 0 ? (
-            <p className="saleAmount">{item.sale}% Off</p>
-          ) : undefined}
+        <div className="ItemPrevBody">
+          <div className="ImagePrevBox">
+            <img
+              className="previewImage"
+              src={`${ImagePath + item.images[0]}`}
+            />
+            {item.sale > 0 ? (
+              <p className="saleAmount">{item.sale}% Off</p>
+            ) : undefined}
+            
+              <div className="itemRating">
+                <img src={StartIcon} className="starIcon" />
+                <p className="RateStars font5">{GetStars(item)}</p>
+              </div>
+            
+          </div>
         </div>
-
+      </div>
+      <div className="bottomCard">
         <p className="itemName font5">{item.name}</p>
         <div className="ItemFeatures">
           {item.features[0] && item.features[0].length < 15 ? (
             <p className="featureText">{item.features[0]}</p>
           ) : undefined}
           {item.features[1] && item.features[1].length < 15 ? (
-            <p className="featureText">{item.features[1]}</p>
+            <p className="featureText cardFeature2">{item.features[1]}</p>
           ) : undefined}
         </div>
         <p

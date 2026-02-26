@@ -1,7 +1,7 @@
 .ItemCard {
   box-shadow: rgba(0, 0, 0, 0.37) 0 0 0.2rem;
   background: white;
-  padding: 0.3rem;
+  padding: 0.5rem 0.5rem;
   display: flex;
   background-position: center;
   background-size: cover;
@@ -10,47 +10,56 @@
   position: relative;
   max-width: 100%;
   overflow: hidden;
+  flex-direction: column;
+  justify-content: space-between;
 }
+.ItemCard:active {
+  transform: scale(0.97);
+  filter: brightness(90%);
+}
+
+.upperCard {
+}
+
 .ItemPreview:hover,
+.ItemPreview:active,
 .viewAll:hover {
   cursor: pointer;
-}
-.ItemPreview:active,
-.viewAll:active {
-  transform: scale(0.97);
-  transition: all 0.15s;
-  z-index: -1;
-  filter: brightness(90%);
 }
 
 .saleIcon,
 .likeIcon {
-  height: 2.5rem;
-  width: 2.5rem;
+  height: min(7vw, 2.5rem);
+  width: min(7vw, 2.5rem);
   z-index: 1;
 }
 .saleIcon {
   position: absolute;
   transform: rotate(-30deg);
 }
-.likeIcon{}
+.likeIcon {
+  height: 100%;
+  width: 100%;
+}
 
 .LikeButton {
   z-index: 1;
   border: none;
   background: none;
-  right: 0;
+  right: 4%;
   width: fit-content;
   position: absolute;
+  height: min(8vw, 3rem);
 }
 
 .itemName {
-  font-size: 1.6rem;
+  font-size: min(5.5vw, 1.6rem);
+  text-wrap: nowrap;
   font-weight: 600;
 }
 .ItemPrevBody {
   padding: 0.2rem;
-  height: 100%;
+
   display: flex;
   flex-direction: column;
 }
@@ -62,6 +71,8 @@
   object-fit: contain;
   border-radius: 0.3rem;
 }
+.bottomCard {
+}
 .detailBox {
   display: flex;
   padding: 0.3rem;
@@ -72,30 +83,20 @@
   flex-direction: row;
   align-items: center;
   gap: 5%;
+  flex-wrap: wrap-reverse;
 }
 .itemPrice {
-  font-size: 1.3rem;
+  font-size: min(3.8vw, 1.3rem);
   padding: 0.1rem 0.4rem;
   border-radius: 0.2rem;
   color: rgb(255, 255, 255);
   background: green;
 }
 .discounted {
-  font-size: 1.2rem;
+  font-size: min(4vw,1.2rem);
   font-weight: 500;
   text-decoration: line-through;
   color: rgb(73, 73, 73);
-}
-
-.viewAll {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 1.5rem;
-  font-weight: 600;
-  img {
-    height: 1.5rem;
-  }
 }
 
 .ItemFeatures {
@@ -112,6 +113,14 @@
 .featureText::before {
   content: "• ";
 }
+@media (max-width: 500px) {
+  .cardFeature2 {
+    display: none;
+  }
+  .featureText {
+    max-width: 90%;
+  }
+}
 
 .ImagePrevBox {
   position: relative;
@@ -119,7 +128,7 @@
   flex-direction: column;
 }
 .saleAmount {
-  font-size: 1.1rem;
+  font-size: min(3.5vw, 1.1rem);
   font-weight: bold;
   background: rgb(0, 140, 255);
   color: white;
@@ -132,6 +141,7 @@
 
 .inStock {
   font-weight: bold;
+  font-size: min(3.6vw, 1rem);
 }
 .lowStock {
   background: rgb(255, 142, 142);
@@ -139,4 +149,20 @@
   width: fit-content;
 }
 .likeIcon {
+}
+.itemRating {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  background: white;
+}
+.starIcon {
+  height: min(5vw,1.8rem)
+}
+.RateStars {
+  font-size: min(5vw,1.5rem);
 }

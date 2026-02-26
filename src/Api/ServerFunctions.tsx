@@ -63,7 +63,6 @@ export async function UpdateUserData() {
         });
         if (res.status === 200) {
           const data = await res.json();
-          console.log(data);
           if (data.state === "good") {
             setCart(data.userProfile.cart);
             setFavourites(data.userProfile.favourites)

@@ -11,12 +11,24 @@
   background-repeat: repeat-y;
   z-index: 5;
   margin: 1rem;
-  border-radius: 2rem;
+  border-radius: clamp(1.5rem, 5vw, 2rem);
   box-shadow: black 0.2rem 0.2rem 0.3rem;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+@media (max-width: 700px) {
+  .Showcase {
+    background-attachment: unset;
+    z-index: 0;
+  }
+}
+.parentFront {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 .FrontWordsBox {
   background: conic-gradient(
@@ -26,10 +38,12 @@
     rgba(0, 0, 255, 0),
     gold,
     rgba(0, 0, 255, 0)
-  ); 
+  );
   position: relative;
-  padding:  0.5rem;
+  padding: 0.5rem;
   border-radius: 1rem;
+  align-self: center;
+  max-width: 80vw;
 }
 .FrontWordsBackground {
   padding: 0.5rem 1rem;
@@ -38,28 +52,32 @@
   display: flex;
   background: rgba(0, 15, 59, 0.719);
   border-radius: 0.7rem;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .HomeTittle {
-  font-size: 6rem;
+  font-size: clamp(1.6rem, 4.5vw, 7rem);
   color: white;
 }
-.tittleSlogan{
+.tittleSlogan {
   text-align: center;
-  font-size: 3rem;
+  font-size: clamp(0.8rem, 2.5vw, 3rem);
   color: white;
 }
-
 
 .droneModel {
   filter: drop-shadow(rgba(0, 0, 0, 0.7) 0.4rem 0.7rem 0.2rem);
   max-width: 45vw;
 }
-.droneHovering{height: 15rem;}
+.droneHovering {
+  width: clamp(20rem, 20vw, 25rem);
+  object-fit: contain;
+}
 
 .SearchSystem {
   background: white;
-  top: 2.6rem;
+  top: min(9.9vw,2.5rem);
   box-shadow: rgba(0, 0, 0, 0.3) 0rem 0.1rem 0.2rem;
   position: sticky;
   display: flex;
@@ -71,17 +89,17 @@
   .FilterBar {
     padding: 0.1rem;
     width: 15rem;
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 4vw, 1.5rem);
     font-weight: bold;
     display: flex;
     justify-content: space-evenly;
     border: none;
-    border-radius: 3rem;
+    border-radius: clamp(1.9rem, 3vw, 3rem);
     background: rgba(120, 20, 20, 1);
     color: white;
 
     align-items: center;
-    height: 2.2rem;
+    height: min(7vw, 2.2rem);
     img {
       filter: invert();
       height: 70%;
@@ -90,40 +108,30 @@
   }
   .SearchBar {
     background: rgba(120, 20, 20, 1);
-    flex: 0.9;
-    display: flex;
-    height: 2.2rem;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.15rem 2rem;
-    border-radius: 3rem;
     max-width: min(60vw, 45rem);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2rem;
+    width: 70%;
     input {
+      max-width: 60vw;
+      
+   outline: solid rgba(120, 20, 20, 1) ;
+      border-radius: 25rem;
       height: 100%;
-      font-size: 1.5rem;
+      font-size: clamp(1rem, 1.5vw, 1.5rem);
       padding: 0 1rem;
       border: none;
       flex: 0.99;
-      max-width: 40vw;
     }
-    .searchBtn {
-      height: 100%;
-      background: rgb(255, 255, 255);
-      font-weight: bold;
-      font-size: 1.2rem;
-      border: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.2rem;
-      img {
-        height: 130%;
-      }
-      @media (max-width: 780px) {
-        .searchTittle {
-          display: none;
-        }
-      }
+    .searchIcon{
+        position: absolute;
+        right: 3%;
+        height: 95%;
+      
+    
     }
   }
 }
@@ -132,7 +140,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  padding: 1rem 2rem;
+  padding: 1rem min(2vw,2rem);
   display: grid;
   grid-template-columns: repeat(5, 1fr);
 }
@@ -169,9 +177,9 @@
   width: fit-content;
   height: calc(100vh - 5.4rem);
   position: sticky;
-  top: 5.4rem;
+  top: 5.3rem;
   overflow-y: auto;
-  padding-bottom: 2rem;
+  padding-bottom: clamp(1.5rem, 5vw, 2rem);
 }
 .HideFilterBtn {
   display: none;
@@ -198,7 +206,7 @@
   color: white;
 }
 .filterSubTittle {
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 1.5vw, 1.5rem);
 }
 .filterTypes {
   display: flex;
@@ -209,12 +217,12 @@
   display: flex;
   flex-wrap: wrap;
   width: 45%;
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 1vw, 1.2rem);
   p {
     width: fit-content;
   }
   input {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 1vw, 1.2rem);
     width: 100%;
     max-width: 100%;
     border: none;
@@ -230,19 +238,20 @@
   margin-bottom: 1rem;
 }
 .HideFilterBtn {
-  height: 2rem;
-  width: 2rem;
+  height: clamp(1.5rem, 5vw, 2rem);
+  width: clamp(1.5rem, 5vw, 2rem);
   background: none;
   border: none;
   padding: 0.3rem;
   img {
     height: 100%;
     aspect-ratio: 1/1;
+    filter: invert();
   }
 }
 .filterSerchTittle {
   font-weight: 500;
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 4vw, 1.5rem);
   color: white;
 }
 
@@ -253,7 +262,7 @@
   width: 100%;
 }
 .filterSizeSelect {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 1vw, 1.2rem);
   width: 100%;
   padding: 0.2rem;
   border: none;
@@ -277,10 +286,10 @@ option:checked {
   align-items: center;
   align-items: center;
   gap: 0.1rem;
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 4vw, 1.5rem);
   img {
-    height: 1.5rem;
-    width: 1.5rem;
+    height: clamp(1rem, 4vw, 1.5rem);
+    width: clamp(1rem, 4vw, 1.5rem);
     filter: invert();
   }
 }
@@ -291,11 +300,50 @@ option:checked {
   align-items: center;
   justify-content: space-between;
   padding: 0.2rem 1rem;
-  height: 3rem;
+  height: clamp(1.9rem, 3vw, 3rem);
   background: silver;
   position: sticky;
-  top: 5rem;
+  top: min(19vw, 5.3rem); 
   z-index: 2;
-  font-size: 1.7rem;
+  font-size: clamp(0.7rem, 1.5vw, 1.7rem);
   font-weight: 600;
+}
+.itemsGroupName {
+  font-size: clamp(1.2rem, 1.5vw, 1.7rem);
+}
+
+.searchResult {
+  min-height: 95vh;
+}
+.resetFilter {
+  font-size: clamp(1rem, 1vw, 1.2rem);
+  background: blue;
+  width: 50%;
+  padding: 0.5rem clamp(1.5rem, 5vw, 2rem);
+  align-self: center;
+  color: white;
+  background: none;
+  border: solid 0.15rem white;
+}
+
+.viewAll:active {
+  transform: scale(0.97);
+  transition: all 0.15s;
+  z-index: -1;
+  filter: brightness(90%);
+}
+.viewAll {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: min(5vw,1.5rem);
+  img {
+    height: min(4.5vw,1.5rem);
+  }
+}
+
+.noMatchFound{
+  font-size: min(4vw,1.3rem);
+  text-align: center;
+  text-wrap: nowrap;
 }
