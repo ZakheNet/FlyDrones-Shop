@@ -4,11 +4,7 @@ export const HOST = DEV
   ? "http://localhost:3000/"
   : "https://flydronesserver.netlify.app/";
 
-export const useOnPage = create((set) => ({
-  OnPage: "home",
-  goMenu: () => set(() => ({ onPage: "menu" })),
-  goAuth: () => set(() => ({ onPage: "menu" })),
-}));
+
 
 import DevProfilePic from "../assets/Pictures/DevProfilePic.png";
 export const userDev = {
@@ -23,11 +19,6 @@ export const userDev = {
   updated_at: "2026-02-21T15:19:16.992Z",
 };
 
-export const useDATA = create(() => ({
-  allDrones: [],
-  allSales: [],
-  allFeatures: [],
-}));
 
 export const useProfile = create((set) => ({
   favourites: [],
@@ -37,3 +28,18 @@ export const useProfile = create((set) => ({
   setCart: (value) => set(() => ({ cart: value })),
   setAddress: (value) => set(() => ({ address: value })),
 }));
+
+export const useDATA=create((set)=>({
+  DATA:undefined,
+  setDATA:(data)=>set(()=>({DATA:data}))
+}))
+
+export const useCards=create((set)=>({
+  DroneCards:[],
+  DroneSaleCards:[],
+  FeaturedDroneCards:[],
+  setDroneCards:(data)=>set(()=>({DroneCards:data})),
+  setDroneSaleCards:(data)=>set(()=>({DroneSaleCards:data})),
+  setFeaturedDroneCards:(data)=>set(()=>({FeaturedDroneCards:data})),
+
+}))

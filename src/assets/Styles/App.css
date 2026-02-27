@@ -7,3 +7,10 @@ body {
   font-family: Arial;
   padding-top: 2rem;
 }
+button:hover{
+cursor: pointer;
+}
+button:active {
+  transform: scale(0.97);
+  filter: brightness(90%);
+}

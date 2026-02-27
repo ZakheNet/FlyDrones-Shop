@@ -11,7 +11,7 @@ export type DataType =
 export type ItemType = {
   name: string;
   model: string;
-  size: string;
+  size: string  ;
   id: string;
   price: number;
   images: string[];

@@ -22,7 +22,6 @@
 }
 
 .ItemPreview:hover,
-.ItemPreview:active,
 .viewAll:hover {
   cursor: pointer;
 }
@@ -93,7 +92,7 @@
   background: green;
 }
 .discounted {
-  font-size: min(4vw,1.2rem);
+  font-size: min(4vw, 1.2rem);
   font-weight: 500;
   text-decoration: line-through;
   color: rgb(73, 73, 73);
@@ -161,8 +160,21 @@
   background: white;
 }
 .starIcon {
-  height: min(5vw,1.8rem)
+  height: min(5vw, 1.8rem);
+}
+
+.rateNumBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 .RateStars {
-  font-size: min(5vw,1.5rem);
+  font-size: min(5vw, 1.5rem);
+  display: flex;
+  flex-direction: row;
+}
+.rateNumbers {
+  font-size: min(4.5vw, 1.4rem);
+  padding: 0 0.2rem;
 }

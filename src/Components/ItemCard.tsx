@@ -22,7 +22,7 @@ export default function ItemPreview({
 }) {
   function PricePresentation(price: number) {
     let newPrice = "R0";
-    const ammount = (price * 16).toFixed();
+    const ammount = (price * 15).toFixed();
     newPrice = ammount.toString();
     if (ammount.toString().length > 3) {
       newPrice =
@@ -51,6 +51,8 @@ export default function ItemPreview({
       } else {
         loginWithRedirect();
       }
+    } else {
+      loginWithRedirect();
     }
   }
 
@@ -58,7 +60,7 @@ export default function ItemPreview({
     let totalStars = 0;
     const reviews = drone.reviews.length;
     if (reviews <= 0) {
-      return "0";
+      return <p className="RateStars font5">0 </p>;
     }
     if (reviews > 0) {
       drone.reviews.forEach((review) => {
@@ -70,9 +72,17 @@ export default function ItemPreview({
     try {
       const rate = parseFloat((totalStars / reviews).toFixed(1));
 
-      return rate.toString().length==1? rate+".0":rate;
+      return (
+        <div className="rateNumBox">
+          {" "}
+          <p className="RateStars font5">
+            {rate.toString().length == 1 ? rate + ".0" : rate}
+          </p>
+          <p className="rateNumbers"> ({reviews})</p>
+        </div>
+      );
     } catch {
-      return "0";
+      return <p className="RateStars font5">0 (0)</p>;
     }
   }
 
@@ -80,7 +90,7 @@ export default function ItemPreview({
     <div className="ItemCard">
       <div className="upperCard">
         {item.sale > 0 ? (
-          <img src={SaleIcon} alt="" className="saleIcon" />
+          <img draggable={false} src={SaleIcon} alt="" className="saleIcon" />
         ) : undefined}
 
         <button
@@ -89,7 +99,7 @@ export default function ItemPreview({
           }}
           className="LikeButton"
         >
-          <img
+          <img draggable={false}
             src={isFavourite ? LikedIcon : unLikedIcon}
             alt=""
             className="likeIcon"
@@ -98,19 +108,18 @@ export default function ItemPreview({
 
         <div className="ItemPrevBody">
           <div className="ImagePrevBox">
-            <img
+            <img draggable={false}
               className="previewImage"
               src={`${ImagePath + item.images[0]}`}
             />
             {item.sale > 0 ? (
               <p className="saleAmount">{item.sale}% Off</p>
             ) : undefined}
-            
-              <div className="itemRating">
-                <img src={StartIcon} className="starIcon" />
-                <p className="RateStars font5">{GetStars(item)}</p>
-              </div>
-            
+
+            <div className="itemRating">
+              <img draggable={false} src={StartIcon} className="starIcon" />
+              {GetStars(item)}
+            </div>
           </div>
         </div>
       </div>

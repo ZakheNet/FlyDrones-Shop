@@ -2,7 +2,7 @@ import "../assets/Styles/Header.css";
 import ProfileIcon from "../assets/Icons/Profile.png";
 import SiteLogo from "../assets/Icons/DroneLogo.png";
 import { useAuth0 } from "@auth0/auth0-react";
-import { DEV } from "../Api/STORE";
+import { DEV,useDATA } from "../Api/STORE";
 import { useEffect, useState } from "react";
 
 import LogoutIcon from "../assets/Icons/Leave.png";
@@ -11,14 +11,26 @@ import VerifiedIcon from "../assets/Icons/Correct.png";
 import backIcon from "../assets/Icons/cancel.png";
 import loadingIcon from "../assets/Icons/Drone2.png";
 import SideMenuIcon from "../assets/Icons/more.png";
-import { userDev } from "../Api/STORE";
-import { UpdateUserData } from "../Api/ServerFunctions";
+import { userDev,useCards } from "../Api/STORE";
+import {MakeCards, UpdateUserData, GetData } from "../Api/ServerFunctions";
 
 export default function Header() {
   const { user, isAuthenticated, isLoading, loginWithRedirect, logout } =
     useAuth0();
+    const {setDroneCards,setFeaturedDroneCards,setDroneSaleCards}=useCards()
   const [ViewProfile, setViewProfile] = useState(false);
   const [ViewSideMenu, setViewSideMenu] = useState(false);
+  const {setDATA,DATA}=useDATA()
+
+  GetData(setDATA)
+  useEffect(()=>{
+    if(DATA){
+      MakeCards(DATA,setDroneCards,setFeaturedDroneCards,setDroneSaleCards)
+    }
+  },[DATA])
+
+
+
 
   UpdateUserData();
 

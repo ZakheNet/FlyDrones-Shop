@@ -17,68 +17,35 @@ import { useAuth0 } from "@auth0/auth0-react";
 import backIcon from "../assets/Icons/cancel.png";
 import { useEffect, useState } from "react";
 import { DataType, ItemType, PreviewType } from "../Api/DataTypes";
-import { HOST } from "../Api/STORE";
+import { HOST, useDATA, useCards } from "../Api/STORE";
 import Footer from "../Components/footer";
 import DroneIcon from "../assets/Models/DroneModel1.png";
+import { MakePreview } from "../Api/ServerFunctions";
 
 export default function Home() {
-  const [DATA, setDATA] = useState<DataType>(undefined);
-  const [AllDrones, setAllDrones] = useState<any[]|undefined>(undefined);
-  const [AllSaleDrones, setAllSaleDrones] = useState<any[]|undefined>(undefined);
-  const [FeaturedDrones, setFeaturedDrones] = useState<any[]|undefined>();
-  const [CapFeatured,setCapFeatured]=useState(true)
-  const [CapSales,setCapSales]=useState(true)
-  const [CapShelf,setCapShelf]=useState(true)
-
-  useEffect(() => {
-    async function GetData() {
-      try {
-        const res = await fetch(HOST + "Stock");
-
-        const resData = await res.json();
-
-        setDATA(resData);
-      } catch (e) {
-        console.log(e);
-      }
-    }
-    GetData();
-  }, []);
-/* window */
-  useEffect(() => {
-    if (DATA) {
-      const preAllDrones = DATA.drones.map((drone) => {
-        return MakePreview(drone, "AllDrones");
-      });
-      setAllDrones(preAllDrones);
-
-      const preFeaturedDrones = DATA.drones
-        .filter((drone) => DATA.featuredDrones.includes(drone.id))
-        .map((drone) => {
-          return MakePreview(drone, "FeaturedDrone");
-        });
-      setFeaturedDrones(preFeaturedDrones);
-
-      const preSaleDrones = DATA.drones
-        .filter((drone) => drone.sale>0)
-        .map((drone) => {
-          return MakePreview(drone, "FeaturedDrone");
-        });
-      setAllSaleDrones(preSaleDrones);
-    }
-  }, [DATA]);
+  const { DATA } = useDATA();
+  const { DroneCards, DroneSaleCards, FeaturedDroneCards } = useCards();
+  /* const [DATA, setDATA] = useState<DataType>(undefined); */
+  /*  const [DroneCards, setDroneCards] = useState<any[] | undefined>(undefined);
+  const [DroneSaleCards, setDroneSaleCards] = useState<any[] | undefined>(
+    undefined,
+  );
+  const [FeaturedDroneCards, setFeaturedDroneCards] = useState<any[] | undefined>(); */
+  const [CapSales, setCapSales] = useState(true);
+  const [CapShelf, setCapShelf] = useState(true);
 
   const [ViewFilterSearchBar, setViewFilterSearchBar] = useState(
     window.window.innerWidth > 800,
   );
 
-
-  const screenSize = window.window.innerWidth
-  let CapLimit = 10
-  if(screenSize<1500){CapLimit=8}
-  if(screenSize<1200){CapLimit=6}
-
-
+  const screenSize = window.window.innerWidth;
+  let CapLimit = 10;
+  if (screenSize < 1500) {
+    CapLimit = 8;
+  }
+  if (screenSize < 1200) {
+    CapLimit = 6;
+  }
 
   const { isAuthenticated, isLoading, user, getAccessTokenSilently } =
     useAuth0();
@@ -105,10 +72,7 @@ export default function Home() {
     }
   }, [filtMinPrice, filtMaxPrice, filtRate, filtSize, filtSort]);
 
-  function MakePreview(item: ItemType, from: PreviewType) {
-    return <ItemPreview key={item.id} item={item} itemFrom={from} />;
-  }
-  const [SearchDrones, setSearchDrones] = useState<any>(undefined);
+  const [SearchDrones, setSearchDrones] = useState<any>(DroneCards);
   const [Search, setSearch] = useState("");
 
   function SearchHandle(text: string) {
@@ -134,7 +98,33 @@ export default function Home() {
     });
 
     if (DATA) {
-      const prepSearchDrones = DATA.drones
+      let sortedData: ItemType[] = DATA.drones;
+
+      switch (filtSort) {
+        case "lowPrice":
+          sortedData = sortedData.sort(
+            (a: ItemType, b: ItemType) =>
+              (a.sale > 0 ? a.price - (a.sale / 100) * a.price : a.price) -
+              (b.sale > 0 ? b.price - (b.sale / 100) * b.price : b.price),
+          );
+          break;
+        case "highPrice":
+          sortedData = sortedData.sort(
+            (a: ItemType, b: ItemType) =>
+              (b.sale > 0 ? b.price - (b.sale / 100) * b.price : b.price)-
+              (a.sale > 0 ? a.price - (a.sale / 100) * a.price : a.price)
+          );break;
+          case "size":sortedData.sort(
+            (a: ItemType, b: ItemType) =>a.size.localeCompare(b.size));break
+          case "name":sortedData.sort(
+            (a: ItemType, b: ItemType) =>a.name.localeCompare(b.name));break
+      
+
+        default:
+          break;
+      }
+
+      const prepSearchDrones: ItemType[] = DATA.drones
         .filter((drone: ItemType) => {
           if (text === "") {
             return drone;
@@ -184,7 +174,7 @@ export default function Home() {
           if (filtSize === "all") {
             return drone;
           }
-          if (drone.size.toLocaleLowerCase() === filtSize) {
+          if (drone.size === filtSize) {
             return drone;
           }
         })
@@ -209,16 +199,52 @@ export default function Home() {
             const rate = parseFloat((totalStars / reviews).toFixed(1));
 
             const filt = parseInt(filtRate);
-            console.log(rate + " == " + filt);
-
-            if (rate >= filt && rate <= filt) {
+            if (rate >= filt && rate <= filt + 0.9) {
               return drone;
             }
           } catch {}
         })
-        .map((drone) => {
+        .filter((drone: ItemType) => {
+          if (filtMinPrice == "" || parseFloat(filtMinPrice) == 0) {
+            return drone;
+          }
+
+          console.log(drone.sale);
+          const limit = parseFloat(filtMinPrice);
+          const price =
+            drone.sale > 0
+              ? (drone.price - (drone.sale / 100) * drone.price) * 15
+              : drone.price * 15;
+
+          if (price < 100) {
+            console.log(drone);
+          }
+
+          console.log(limit + " <<< " + price);
+          if (price >= limit) {
+            return drone;
+          }
+        })
+        .filter((drone: ItemType) => {
+          if (filtMaxPrice == "" || parseFloat(filtMaxPrice) == 0) {
+            return drone;
+          }
+
+          console.log(drone.sale);
+          const limit = parseFloat(filtMaxPrice);
+          const price =
+            drone.sale > 0
+              ? (drone.price - (drone.sale / 100) * drone.price) * 15
+              : drone.price * 15;
+
+          if (price <= limit) {
+            return drone;
+          }
+        })
+        .map((drone: ItemType) => {
           return MakePreview(drone, "Search");
         });
+
       setSearchDrones(prepSearchDrones);
     }
   }
@@ -389,10 +415,10 @@ export default function Home() {
                       }}
                     >
                       <option value={"all"}>All</option>
-                      <option value={"mini"}>Mini</option>
-                      <option value={"small"}>Small</option>
-                      <option value={"medium"}>Medium</option>
-                      <option value={"large"}>Large</option>
+                      <option value={"Mini"}>Mini</option>
+                      <option value={"Small"}>Small</option>
+                      <option value={"Medium"}>Medium</option>
+                      <option value={"Large"}>Large</option>
                     </select>
                   </div>
                 </div>
@@ -437,7 +463,11 @@ export default function Home() {
                 </p>
               </div>
               <div className="droneCatalogue ItemListContainer">
-                {SearchDrones.length>0? SearchDrones: <p className="noMatchFound font9">NO MATCH FOUND</p>}
+                {SearchDrones.length > 0 ? (
+                  SearchDrones
+                ) : (
+                  <p className="noMatchFound font9">NO MATCH FOUND</p>
+                )}
               </div>
             </div>
           ) : undefined}
@@ -448,32 +478,85 @@ export default function Home() {
                 <div className="ItemsListHead">
                   <p className="font11 itemsGroupName">Featured:</p>
                 </div>
-                <div className="ItemListContainer">{FeaturedDrones}</div>
+                <div className="ItemListContainer">
+                  {FeaturedDroneCards.length === 0 ? (
+                    <p className="noMatchFound font9">No inventory</p>
+                  ) : (
+                    FeaturedDroneCards
+                  )}
+                </div>
               </div>
               <div className="OnSale">
-                <div className="ItemsListHead">
+                <div
+                  className="ItemsListHead"
+                  onClick={() => setCapSales(!CapSales)}
+                >
                   <p className="font11 itemsGroupName">On Sale:</p>
                   <p className="viewAll font5">
-                    <img src={ViewAllIcon} alt="" />
-                    View All
+                    <img
+                      style={
+                        CapSales ? undefined : { transform: "rotate(180deg)" }
+                      }
+                      src={ViewAllIcon}
+                      alt=""
+                    />
                   </p>
                 </div>
                 <div className="droneCatalogue ItemListContainer">
-                  {CapSales? AllSaleDrones?.slice(0,CapLimit) :AllSaleDrones}
+                  {DroneSaleCards.length === 0 ? (
+                    <p className="noMatchFound font9">No inventory</p>
+                  ) : CapSales ? (
+                    DroneSaleCards?.slice(0, CapLimit / 2)
+                  ) : (
+                    DroneSaleCards
+                  )}
                 </div>
+                <button
+                  onClick={() => {
+                    setCapSales(!CapSales);
+                  }}
+                  className="showAllBtn font6"
+                >
+                  {!CapSales ? "Show Less" : "Show All"}
+                </button>
               </div>
               <div className="CataLogue">
-                <div className="ItemsListHead">
+                <div
+                  className="ItemsListHead"
+                  onClick={() => setCapShelf(!CapShelf)}
+                >
                   <p className="font11 itemsGroupName">Shelf:</p>
                   <p className="viewAll font5">
-                    <img src={ViewAllIcon} alt="" />
-                    View All
+                    <img
+                      style={
+                        CapShelf ? undefined : { transform: "rotate(180deg)" }
+                      }
+                      src={ViewAllIcon}
+                      alt=""
+                    />
                   </p>
                 </div>
                 <div className="droneCatalogue ItemListContainer">
-                  {CapShelf? AllDrones?.slice(0,CapLimit):AllDrones}
+                  {DroneCards.length === 0 ? (
+                    <p className="noMatchFound font9">No inventory</p>
+                  ) : CapShelf ? (
+                    DroneCards?.slice(0, CapLimit)
+                  ) : (
+                    DroneCards
+                  )}
                 </div>
+                <button
+                  onClick={() => {
+                    setCapShelf(!CapShelf);
+                  }}
+                  className="showAllBtn font6"
+                >
+                  {!CapShelf ? "Show Less" : "Show All"}
+                </button>
               </div>
+              {DroneCards ? undefined : (
+                <p className="noServer font9">Not connected to Server!</p>
+              )}
             </>
           )}
         </section>
