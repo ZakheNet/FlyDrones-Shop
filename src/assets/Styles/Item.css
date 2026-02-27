@@ -14,12 +14,16 @@
   justify-content: space-between;
 }
 .ItemCard:active {
-  transform: scale(0.97);
-  filter: brightness(90%);
+ 
 }
 
-.upperCard {
+.upperCard:active,.bottomCard:active{
+  transform: scale(0.99);
+  filter: brightness(98%);
+  .ItemCard{
+  }
 }
+
 
 .ItemPreview:hover,
 .viewAll:hover {

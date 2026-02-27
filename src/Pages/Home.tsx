@@ -82,21 +82,25 @@ export default function Home() {
       SearchTerms = text.toLocaleLowerCase().split(" ");
     }
 
-    const element = document.getElementById("SearchSystem");
-    if (element) {
-      const yOffset = -80; // adjust for navbar height
-      const y =
-        element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    if(text.length>0){
 
-      window.scrollTo({
+      const element = document.getElementById("SearchSystem");
+      if (element) {
+        const yOffset = -80;
+        const y =
+        element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        
+        window.scrollTo({
         top: y,
         behavior: "smooth",
       });
     }
+    
     document.getElementById("seachSystem")?.scrollIntoView({
       behavior: "smooth",
     });
-
+  }
+    
     if (DATA) {
       let sortedData: ItemType[] = DATA.drones;
 

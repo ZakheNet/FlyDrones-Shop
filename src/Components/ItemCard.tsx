@@ -4,12 +4,21 @@ import SaleIcon from "../assets/Icons/Sale.png";
 import LikedIcon from "../assets/Icons/HearlLove.png";
 import unLikedIcon from "../assets/Icons/HeartOpen.png";
 import StartIcon from "../assets/Icons/StarGold.png";
-import { SetFavourite, SetNotFavourite } from "../Api/ServerFunctions";
+import { SetFavourite, SetNotFavourite,PricePresentation } from "../Api/ServerFunctions";
+
 
 import { ItemType, PreviewType } from "../Api/DataTypes";
-import { HOST, DEV, useDATA, useProfile, userDev } from "../Api/STORE";
+import {
+  HOST,
+  DEV,
+  useDATA,
+  useProfile,
+  userDev,
+  useSaves
+} from "../Api/STORE";
 import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import {useLocation,useHref, useNavigate} from "react-router";
 
 const ImagePath = HOST + `${DEV ? "" : "public/"}Images/`;
 
@@ -20,22 +29,12 @@ export default function ItemPreview({
   itemFrom: PreviewType;
   item: ItemType;
 }) {
-  function PricePresentation(price: number) {
-    let newPrice = "R0";
-    const ammount = (price * 15).toFixed();
-    newPrice = ammount.toString();
-    if (ammount.toString().length > 3) {
-      newPrice =
-        newPrice.slice(0, newPrice.length - 3) +
-        " " +
-        newPrice.slice(newPrice.length - 3);
-    }
+  const NavigateTo =useNavigate()
 
-    return "R" + newPrice;
-  }
 
   const { favourites } = useProfile();
   const { user, isAuthenticated, loginWithRedirect } = useAuth0();
+  const { OnProduct,setOnProduct } = useSaves();
 
   const [isFavourite, setIsFavourite] = useState(favourites.includes(item.id));
 
@@ -86,29 +85,37 @@ export default function ItemPreview({
     }
   }
 
+  async function HandleClick() {
+    await setOnProduct(item);
+    console.log(OnProduct)
+    NavigateTo("/Product/"+item.id)
+    
+  }
+
   return (
     <div className="ItemCard">
-      <div className="upperCard">
+      <button
+        onClick={() => {
+          HandleLike();
+        }}
+        className="LikeButton"
+      >
+        <img
+          draggable={false}
+          src={isFavourite ? LikedIcon : unLikedIcon}
+          alt=""
+          className="likeIcon"
+        />
+      </button>
+      <a href="#" className="upperCard" onClick={HandleClick}>
         {item.sale > 0 ? (
           <img draggable={false} src={SaleIcon} alt="" className="saleIcon" />
         ) : undefined}
 
-        <button
-          onClick={() => {
-            HandleLike();
-          }}
-          className="LikeButton"
-        >
-          <img draggable={false}
-            src={isFavourite ? LikedIcon : unLikedIcon}
-            alt=""
-            className="likeIcon"
-          />
-        </button>
-
         <div className="ItemPrevBody">
           <div className="ImagePrevBox">
-            <img draggable={false}
+            <img
+              draggable={false}
               className="previewImage"
               src={`${ImagePath + item.images[0]}`}
             />
@@ -122,8 +129,8 @@ export default function ItemPreview({
             </div>
           </div>
         </div>
-      </div>
-      <div className="bottomCard">
+      </a>
+      <a href="#" className="bottomCard" onClick={HandleClick}>
         <p className="itemName font5">{item.name}</p>
         <div className="ItemFeatures">
           {item.features[0] && item.features[0].length < 15 ? (
@@ -156,7 +163,7 @@ export default function ItemPreview({
             </p>
           </div>
         </div>
-      </div>
+      </a>
     </div>
   );
 }

@@ -43,3 +43,8 @@ export const useCards=create((set)=>({
   setFeaturedDroneCards:(data)=>set(()=>({FeaturedDroneCards:data})),
 
 }))
+
+export const useSaves=create((set)=>({
+  OnProduct:undefined,
+  setOnProduct:(data)=>set(()=>({OnProduct:data}))
+}))

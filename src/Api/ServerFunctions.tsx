@@ -127,3 +127,18 @@ export function MakeCards(
 export function MakePreview(item: ItemType, from: PreviewType) {
   return <ItemCard key={item.id} item={item} itemFrom={from} />;
 }
+
+  export function PricePresentation(price: number) {
+    let newPrice = "R0";
+    const ammount = (price * 15).toFixed();
+    newPrice = ammount.toString();
+    if (ammount.toString().length > 3) {
+      newPrice =
+        newPrice.slice(0, newPrice.length - 3) +
+        " " +
+        newPrice.slice(newPrice.length - 3);
+    }
+
+    return "R" + newPrice;
+  }
+

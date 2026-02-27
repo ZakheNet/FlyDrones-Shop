@@ -1,6 +1,6 @@
 import Header from "./Components/header";
 import Home from "./Pages/Home";
-/* import ItemView from "" */
+import ItemView from "./Components/ProductView";
 import { Routes, Route, Router, Link, BrowserRouter } from "react-router";
 import { RouterProvider } from "react-router";
 
@@ -11,9 +11,9 @@ export default function App() {
       <Header />
         <Routes>
           <Route path="/" element={<Home/>}/>
-          <Route path="/FlyDrones-Shop/" element={<Home/>}>
-
-          </Route>
+          <Route path="/FlyDrones-Shop/" element={<Home/>}/>
+          <Route path="/Product" element={<ItemView/>}/>
+          <Route path="/Product/:id" element={<ItemView/>}/>
         </Routes>
       </BrowserRouter>
     </>
