@@ -19,16 +19,16 @@ export default function ItemView() {
   const { OnProduct }: { OnProduct: ItemType } = useSaves();
   const [Item, setItem] = useState<ItemType>(OnProduct);
   useEffect(() => {
-      setItem(OnProduct);
-      console.log("read done!!")
-      if(OnProduct){}
+    setItem(OnProduct);
+    console.log("read done!!");
+    if (OnProduct) {
+    }
   }, [OnProduct]);
-
 
   const NavigateTo = useNavigate();
 
-  if(Item===undefined){
-    window.location.href="/"
+  if (Item === undefined) {
+    window.location.href = "/";
   }
 
   const [activePreview, setActivePreview] = useState(0);
@@ -82,7 +82,10 @@ export default function ItemView() {
   return (
     <section className="ProductsContainer">
       <div className="ProductHeader">
-        <button onClick={() => NavigateTo("/")} className="productBackBtn font6">
+        <button
+          onClick={() => NavigateTo("/")}
+          className="productBackBtn font6"
+        >
           <img src={BackIcon} className="backProductIcon" alt="" />
           BACK
         </button>
@@ -176,82 +179,86 @@ export default function ItemView() {
             ) : undefined}
           </div>
 
-          <div className="PreviewInfoBox">
-            <p className="productName font8">{Item.name}</p>
-            <p className="modelName font5">Model: {Item.model}</p>
-            <div className="descriptionBox">
-              <p className="descriptionLabel font3">Description:</p>
-              <p className="productDescription font3">{Item.description}</p>
-            </div>
-            <div className="colorsContainer">
-              <p className="colorsTittle font3">Available colours:</p>
-              <div className="ColorAssorted">
-                <img src={colorPalatteIcon} alt="" />
-                <div className="colorsAvailableBox">
-                  {Item.colors.map((color) => (
-                    <div className="colorNamePair">
-                      <div
-                        className="colorAvailable"
-                        style={{ background: `${color}` }}
-                      ></div>
-                      <p className="colorName font3">{color.toUpperCase()}</p>
-                    </div>
-                  ))}
+          <div className="InfoAndPriceContainer">
+            <div className="PreviewInfoBox">
+              <p className="productName font6">{Item.name}</p>
+              <p className="modelName font5">Model: {Item.model}</p>
+              <div className="descriptionBox">
+                <p className="descriptionLabel font3">Description:</p>
+                <p className="productDescription font3">{Item.description}</p>
+              </div>
+              <div className="colorsContainer">
+                <p className="colorsTittle font3">Available colours:</p>
+                <div className="ColorAssorted">
+                  <img src={colorPalatteIcon} alt="" />
+                  <div className="colorsAvailableBox">
+                    {Item.colors.map((color) => (
+                      <div className="colorNamePair">
+                        <div
+                          className="colorAvailable"
+                          style={{ background: `${color}` }}
+                        ></div>
+                        <p className="colorName font3">{color.toUpperCase()}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <div className="subinfoBox">
+                <div className="featuresBox">
+                  <p className="featuresTittle font3">FEATURES:</p>
+                  <div className="featuresList">
+                    {Item.features.map((feature) => {
+                      return <p className="featureName font3">•{feature}</p>;
+                    })}
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="subinfoBox">
-              <div className="featuresBox">
-                <p className="featuresTittle font3">FEATURES:</p>
-                <div className="featuresList">
-                  {Item.features.map((feature) => {
-                    return <p className="featureName font3">•{feature}</p>;
-                  })}
+            <div className="ActionContainer">
+              <div className="MonetizeBox">
+                <div className="PricesPair">
+                  {
+                    <p className="ProductPrice font5">
+                      {PricePresentation(
+                        Item.sale > 0
+                          ? Item.price - (Item.sale / 100) * Item.price
+                          : Item.price,
+                      )}
+                    </p>
+                  }
+                  {Item.sale > 0 ? (
+                    <p className="OriginalPriceTag font2">
+                      {PricePresentation(Item.price)}
+                    </p>
+                  ) : undefined}
                 </div>
-              </div>
-            </div>
-          </div>
-          <div className="ActionContainer">
-            <div className="MonetizeBox">
-              <div className="PricesPair">
-                {
-                  <p className="ProductPrice font5">
-                    {PricePresentation(
-                      Item.sale > 0
-                        ? Item.price - (Item.sale / 100) * Item.price
-                        : Item.price,
-                    )}
-                  </p>
-                }
                 {Item.sale > 0 ? (
-                  <p className="OriginalPriceTag font2">
-                    {PricePresentation(Item.price)}
-                  </p>
+                  <div className="saveBox">
+                    <p className="theSaleOff font2">{Item.sale}% OFF </p>
+                    <p className="SaveAmmount font2">
+                      SAVE {PricePresentation((Item.sale / 100) * Item.price)}
+                    </p>
+                  </div>
                 ) : undefined}
-              </div>
-              {Item.sale > 0 ? (
-                <div className="saveBox">
-                  <p className="theSaleOff font2">{Item.sale}% OFF </p>
-                  <p className="SaveAmmount font2">
-                    SAVE {PricePresentation((Item.sale / 100) * Item.price)}
-                  </p>
+                <div className="actionBuyBox">
+                  <div className="EstimationBox">
+                    <p className="estimatedDeliveryTittle font5">
+                      Delivery By:
+                    </p>
+                    <p className="estimatedDeliveryDate font6">
+                      {DeliveryCalculator()}
+                    </p>
+                  </div>
+                  <button className="addToFavs font5">
+                    <img src={FavouriteIcon} className="favIconAct" />
+                    Add to Favourites
+                  </button>
+                  <button className="addToCart">
+                    <img src={addCartIcon} className="addCartIcon" />
+                    Add to Cart
+                  </button>
                 </div>
-              ) : undefined}
-              <div className="actionBuyBox">
-                <div className="EstimationBox">
-                  <p className="estimatedDeliveryTittle font5">Delivery By:</p>
-                  <p className="estimatedDeliveryDate font6">
-                    {DeliveryCalculator()}
-                  </p>
-                </div>
-                <button className="addToFavs font5">
-                  <img src={FavouriteIcon} className="favIconAct" />
-                  Add to Favourites
-                </button>
-                <button className="addToCart">
-                  <img src={addCartIcon} className="addCartIcon" />
-                  Add to Cart
-                </button>
               </div>
             </div>
           </div>

@@ -19,19 +19,23 @@
   filter: invert();
 }
 .MainProductBox {
-  width: 100vw;
   background: rgb(245, 245, 245);
-  height: 30vw;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (max-width: 1300px) {
+  .MainProductBox {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 .GroupPreviews {
   display: flex;
   flex-direction: row;
   gap: 1rem;
-  width: fit-content;
-  height: 100%;
+  width: min(92vw, 27rem);
+  aspect-ratio: 1/1;
   padding: 1rem;
 }
 .sideImages {
@@ -290,12 +294,28 @@
 }
 .moreRecommedsBox {
   display: grid;
-  gap: 2rem;
-  padding: 2rem;
-  grid-template-columns: repeat(4,1fr);
+  gap: min(3vw, 2rem);
+  padding: min(3vw, 2rem);
+  grid-template-columns: repeat(4, 1fr);
   flex-wrap: wrap;
+  width: 100vw;
+}
+@media (max-width: 700px) {
+  .moreRecommedsBox {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.AlsoLikeContainer {
+  width: 100vw;
 }
 .ItemCard {
-  
-
+}
+.InfoAndPriceContainer {
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  width: 100%;
+  flex-wrap: wrap;
 }

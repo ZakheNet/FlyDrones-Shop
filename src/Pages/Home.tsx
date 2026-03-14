@@ -558,7 +558,7 @@ export default function Home() {
                   {!CapShelf ? "Show Less" : "Show All"}
                 </button>
               </div>
-              {DroneCards ? undefined : (
+              {DroneCards.length> 0 ? undefined : (
                 <p className="noServer font9">Not connected to Server!</p>
               )}
             </>
