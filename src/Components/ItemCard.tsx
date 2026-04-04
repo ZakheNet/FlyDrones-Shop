@@ -88,7 +88,7 @@ export default function ItemPreview({
   async function HandleClick() {
     await setOnProduct(item);
     console.log(OnProduct)
-    NavigateTo("/Product/"+item.id)
+/*     NavigateTo("/Product/"+item.id) */
     
   }
 
@@ -107,7 +107,7 @@ export default function ItemPreview({
           className="likeIcon"
         />
       </button>
-      <a href="#" className="upperCard" onClick={HandleClick}>
+      <a className="upperCard" onClick={HandleClick}>
         {item.sale > 0 ? (
           <img draggable={false} src={SaleIcon} alt="" className="saleIcon" />
         ) : undefined}
@@ -130,7 +130,7 @@ export default function ItemPreview({
           </div>
         </div>
       </a>
-      <a href="#" className="bottomCard" onClick={HandleClick}>
+      <p className="bottomCard" onClick={HandleClick}>
         <p className="itemName font5">{item.name}</p>
         <div className="ItemFeatures">
           {item.features[0] && item.features[0].length < 15 ? (
@@ -163,7 +163,7 @@ export default function ItemPreview({
             </p>
           </div>
         </div>
-      </a>
+      </p>
     </div>
   );
 }
